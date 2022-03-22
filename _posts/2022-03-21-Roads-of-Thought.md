@@ -123,7 +123,7 @@ I decided to solve this problem in Python using the NLTK package, a popular pack
 data to analyze and feed to our CFG. Scouring the internet, I found a array on github of Yoda sentences to use, and added 
 additional ones to cover some edge cases:
 
-![NLP Contributors](/assets/post2/yoda_sentences.png){: width="500" height="250" }
+![NLP Contributors](/assets/post2/yoda_sentences.png){: width="500" height="600" }
 
 One of the few challenges of generating a CFG with a random set of sentences is:
 1. Making sure to keep track of all its components, in this case, its nonterminals, productions, and starting points
