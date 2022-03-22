@@ -3,8 +3,8 @@ layout: post
 author: Ryan Llamas
 summary: A introduction to the NLP Journey
 ---
-<h1>“Never stay up on the barren heights of cleverness, but come down into the green valleys of silliness."</h1>
-<h2>&#8212; Ludwig Wittgenstein</h2>
+<blockquote><h1>“Never stay up on the barren heights of cleverness, but come down into the green valleys of silliness."</h1>
+<h2>&#8212; Ludwig Wittgenstein</h2></blockquote>
 
 ![Drag Race](/assets/drag_race.png)
 
@@ -53,7 +53,8 @@ How intimidating it was to be charged with such an assignment for my first inter
 returned a proper response was challenging to conceptualize at the beginning and required much trial and error when put to practice.
 
 ![Discover NIU Location](/assets/discover_niu_internship.png)
-The Internship Location I Worked At
+
+<i>The Internship Location I Worked At</i>
 
 But what kept me going was finding out what my bot would return to me and why its decision was made. The victory laps I 
 would do around the workplace when it gave me the proper response was as satisfying as hearing a firstborn call you “Dad”, 
@@ -68,7 +69,8 @@ The stepping stone I decided to use to further my pursuit into the field is a bo
 Natural Language Processing by Christopher D. Manning and Hinrich Schütze.
 
 ![NLP Book](/assets/foundations_of_natural_langauge_book.png)
-Foundations of Statistical Natural Language Processing: Christopher D. Manning, Hinrich Schütze
+
+<cite>Foundations of Statistical Natural Language Processing: Christopher D. Manning, Hinrich Schütze</cite>
 
 The reason I choose this book is because reviews say it covers foundational concepts in NLP that are still widely applied today. 
 Not only that, but the fact that it delves into the mathematics of the subject further intrigues me and gives me the ability 
