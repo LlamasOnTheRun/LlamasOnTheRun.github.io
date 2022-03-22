@@ -54,7 +54,7 @@ returned a proper response was challenging to conceptualize at the beginning and
 
 ![Discover NIU Location](/assets/discover_niu_internship.png)
 
-<i>The Internship Location I Worked At</i>
+<cite>The Internship Location I Worked At</cite>
 
 But what kept me going was finding out what my bot would return to me and why its decision was made. The victory laps I 
 would do around the workplace when it gave me the proper response was as satisfying as hearing a firstborn call you “Dad”, 
