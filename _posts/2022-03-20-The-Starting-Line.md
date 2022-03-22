@@ -3,10 +3,8 @@ layout: post
 author: Ryan Llamas
 summary: A introduction to the NLP Journey
 ---
-<h1>“Never stay up on the barren heights of cleverness, but come down into the green valleys of silliness.”
-
-&#8212; Ludwig Wittgenstein
-</h1>
+<h1>“Never stay up on the barren heights of cleverness, but come down into the green valleys of silliness."</h1>
+<h2>&#8212; Ludwig Wittgenstein</h2>
 
 ![Drag Race](/assets/drag_race.png)
 
@@ -54,7 +52,7 @@ that is able to interpret user responses and give an appropriate answer back.
 How intimidating it was to be charged with such an assignment for my first internship. To interpret any text and ensure it 
 returned a proper response was challenging to conceptualize at the beginning and required much trial and error when put to practice.
 
-(Pic Here)
+![Discover NIU Location](/assets/discover_niu_internship.png)
 The Internship Location I Worked At
 
 But what kept me going was finding out what my bot would return to me and why its decision was made. The victory laps I 
@@ -69,7 +67,7 @@ of thought and inspiration, now I truly wish to understand its full capabilities
 The stepping stone I decided to use to further my pursuit into the field is a book called Foundations of Statistical 
 Natural Language Processing by Christopher D. Manning and Hinrich Schütze.
 
-(Pic Here)
+![NLP Book](/assets/foundations_of_natural_langauge_book.png)
 Foundations of Statistical Natural Language Processing: Christopher D. Manning, Hinrich Schütze
 
 The reason I choose this book is because reviews say it covers foundational concepts in NLP that are still widely applied today. 
