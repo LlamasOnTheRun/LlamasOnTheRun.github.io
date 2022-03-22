@@ -113,7 +113,7 @@ or seem metaphorical in nature, I decided to use sentences only Yoda from Star W
 if you were to try to understand a sentence produced by a CFG, it would come off as a riddle. Hence, I will try to craft a 
 yoda test generator using a generated CFG.
 
-![NLP Contributors](/assets/post2/yoda.png)
+![NLP Contributors](/assets/post2/yoda.png){: width="250" }
 
 <cite>“He once said to me, "Size matters not." That's how he talked. He would speak in riddles.” - Luke Skywalker </cite>
 
