@@ -123,7 +123,7 @@ I decided to solve this problem in Python using the NLTK package, a popular pack
 data to analyze and feed to our CFG. Scouring the internet, I found a array on github of Yoda sentences to use, and added 
 additional ones to cover some edge cases:
 
-![NLP Contributors](/assets/post2/yoda_sentences.png){: width="500" height="600" }
+![NLP Contributors](/assets/post2/yoda_sentences.png){: width="700"}
 
 One of the few challenges of generating a CFG with a random set of sentences is:
 1. Making sure to keep track of all its components, in this case, its nonterminals, productions, and starting points
@@ -136,7 +136,7 @@ is no defined algorithm for this task, I decided to create my own. It follows fo
 it covers existing production rules and “mutate” it, parse the “mutated” sentence with newly created production rules, rinse and
 repeat. Lets see this in code:
 
-![NLP Contributors](/assets/post2/main_method.png)
+![NLP Contributors](/assets/post2/main_method.png){: width="800"}
 
 1. I keep track of five things in the overall program. Will go into detail for each later
 2. Method that returns the Part of Speech(POS) for a sentence
@@ -151,7 +151,7 @@ it by hand for a few sentences to ensure it was a feasible approach.
 
 However, it looks simple from this viewpoint, but let’s take a closer look at each method, starting with how I get the POS:
 
-![NLP Contributors](/assets/post2/get_POS_method.png)
+![NLP Contributors](/assets/post2/get_POS_method.png){: width="800"}
 
 1. I track overallProductionsFound and the sentences POS in temp
 2. for loop with iterate on each word in the sentence getting its POS
@@ -178,7 +178,7 @@ Now that we have our POS for the sentence and the initial production rules, we c
 production rules satisfying the condition A -> BC. However, we wouldn’t want to create duplicate productions while parsing 
 this array. Hence, we will now mutate this array to match existing production rules:
 
-![NLP Contributors](/assets/post2/mutate_method.png)
+![NLP Contributors](/assets/post2/mutate_method.png){: width="800"}
 
 1. I keep track if I foundExistingProductions while parsing (Ignore overallStartingNonTerminals as this was a typo)
 2. A conditional to find out if we have production rules defined
@@ -216,7 +216,7 @@ Hence, determineNonterminalsThatIsChildAndStart() was created to find these. It 
 mutateListWithAlreadyDeclaredProductions() as well, considering if a subset of S was found in this updated array, then 
 it will end up being a nonterminal anyway. Here is the code used to accomplish this:
 
-![NLP Contributors](/assets/post2/child_and_start_method.png)
+![NLP Contributors](/assets/post2/child_and_start_method.png){: width="800"}
 
 1. I keep track of overallProductionsFound and overallStartingNonTerminals
 2. Check if an existing S has been found, for it can’t be a leaf then
@@ -226,7 +226,7 @@ it will end up being a nonterminal anyway. Here is the code used to accomplish t
 This scenario is very rare in a small subset of data, but given a large corpus and examining its sentences, overallStartingAndLeafNonTerminals 
 could end up being larger. Lets see this method in action when a subset of S is used in a sentence:
 
-![NLP Contributors](/assets/post2/leaf_terminal_output.png)
+![NLP Contributors](/assets/post2/leaf_terminal_output.png){: width="800"}
 
 Here we can see the sentence “No different I.” used, but then “Yes, No Different I.” is checked using a nonterminal identified 
 as a S candidate. Consider this visual representation:
@@ -251,7 +251,7 @@ find that this method is rather similar in pattern to mutateListWithAlreadyDecla
 to refactor it in future, as I can merge the two to accomplish both tasks based on a boolean flag. Regardless, let’s see 
 this algorithm in action:
 
-![NLP Contributors](/assets/post2/left_to_right_method.png)
+![NLP Contributors](/assets/post2/left_to_right_method.png){: width="800"}
 
 1. I keep track a rollingID I increment for each new production rule, overallProductionsFound, and overallStartingNonTerminals
 2. Begin the index at the last element and create a array called newNonTerminals to track new productions created from unfoundNonTerminals
@@ -268,7 +268,7 @@ we end up finding/creating 19 production rules for a given sentence. If N were t
 production rules found/produced is 2N-1. This equation is what makes the Chomsky Normal Form so valuable, due to the ability to 
 calculate expectations with a defined rule set. Lets see what out final output is after twenty sentences:
 
-![NLP Contributors](/assets/post2/production_rules_output.png)
+![NLP Contributors](/assets/post2/production_rules_output.png){: width="800"}
 
 Wow, this is a lot of production rules! Not to mention, a lot of starting nonterminals identified! I’m sure if we mapped
 this entire set into a visible tree, we would not only have a huge tree to look at, but be able to reproduce all sentences 
@@ -278,7 +278,7 @@ At this point, I wanted to play around with my new CFG and generate some random 
 define which production rules make up S, use NLTK CFG class to map these rules for further tool use, and then finally generate 
 some random yoda sentences! Lets see this final piece in action:
 
-![NLP Contributors](/assets/post2/final_print_method.png)
+![NLP Contributors](/assets/post2/final_print_method.png){: width="800"}
 
 1. Replace Production elements with a lhs() that is mapped to what we found to be S in overallStartingNonTerminals
 2. Append Production elements for S values that are in overallStartingAndLeafNonTerminals (Keeps original S rule intact)
@@ -294,7 +294,7 @@ intended to add tests before making a solution, but my Hackathon instincts kicke
 
 Lets see how step four displays our sentences being mapped out by our CFG:
 
-![NLP Contributors](/assets/post2/tree_print_terminal_output.png)
+![NLP Contributors](/assets/post2/tree_print_terminal_output.png){: width="800"}
 
 So what are we looking at here? Let's take the sentence “I sense much fear in you.” as an example. It maps out as:
 [Tree('S', [Tree('55', [Tree('PRP', ['I']), Tree('VBP', ['sense'])]), Tree('56', [Tree('54', [Tree('JJ', ['much']), Tree('NN', ['fear'])]), 
@@ -315,7 +315,7 @@ NLTK provides the tools to generate sentences with your CFG given you provided t
 on how to provide random words vs what I provided in a given sentence, but couldn’t come to a reasonable solution (Maybe something 
 to explore in the future!) Lets see how step five generates a huge list of random sentences:
 
-![NLP Contributors](/assets/post2/text_from_CFG_output.png)
+![NLP Contributors](/assets/post2/text_from_CFG_output.png){: width="800"}
 
 I had to wrap my generate() loop with a modulus of million to get a clean output as it would generate a multitude of sentences. 
 The above shows the structure of the sentence “Always two there are, no more, no less: a master and an apprentice.” often with 
