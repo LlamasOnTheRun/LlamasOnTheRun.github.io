@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Ryan Llamas
-summary: A introduction to the NLP Journey and what it is all about
+summary: A introduction to the NLP Journey
 ---
 <h1>“Never stay up on the barren heights of cleverness, but come down into the green valleys of silliness.”
 
