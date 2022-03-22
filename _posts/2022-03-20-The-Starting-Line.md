@@ -8,7 +8,7 @@ summary: A introduction to the NLP Journey
 &#8212; Ludwig Wittgenstein
 </h1>
 
-(Pic Here)
+![Drag Race](/assets/drag_race.png)
 
 <h3>Start Your Engines… </h3>
 
