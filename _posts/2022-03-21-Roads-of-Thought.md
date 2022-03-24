@@ -123,7 +123,52 @@ I decided to solve this problem in Python using the NLTK package, a popular pack
 data to analyze and feed to our CFG. Scouring the internet, I found a array on github of Yoda sentences to use, and added 
 additional ones to cover some edge cases:
 
-![NLP Contributors](/assets/post2/yoda_sentences.png){: width="700"}
+<!--![NLP Contributors](/assets/post2/yoda_sentences.png){: width="700"}-->
+
+{% highlight py linenos %}
+quotes = [
+"No different I.",
+"Yes, No different I.",
+"Agree with you, the council does.",
+"Your apprentice, Skywalker will be.",
+"Always two there are, no more, no less: a master and an apprentice.",
+"Fear is the path to the Dark Side.",
+"Fear leads to anger, anger leads to hate; hate leads to suffering.",
+"I sense much fear in you.",
+"Qui-Gon's defiance I sense in you.",
+"Truly wonderful the mind of a child is.",
+"Around the survivors a perimeter create.",
+"Lost a planet Master Obi-Wan has.",
+"How embarrassing...How embarrassing.",
+"Victory, you say?",
+"Master Obi-Wan, not victory.",
+"The shroud of the Dark Side has fallen.",
+"Begun the Clone War has.",
+"Much to learn you still have... my old padawan... this is just the beginning!",
+"Twisted by the Dark Side young Skywalker has become.",
+"The boy you trained, gone he is, consumed by Darth Vader.",
+"The fear of loss is a path to the Dark Side.",
+"If into the security recordings you go, only pain will you find.",
+"Not if anything to say about it I have.",
+"Great warrior, hmm?",
+"Wars not make one great.",
+"Do or do not; there is no try.",
+"Size matters not.",
+"Look at me.",
+"Judge me by my size, do you?",
+"That is why you fail.",
+"No!",
+"No similar.",
+"You must unlearn what you have learned.",
+"Only different in your mind.",
+"Always in motion the future is.",
+"Reckless he is.",
+"Matters are worse.",
+"When nine hundred years old you reach, look as good, you will not.",
+"No.",
+"There is... another... Sky... walker..."
+]
+{% endhighlight %}
 
 One of the few challenges of generating a CFG with a random set of sentences is:
 1. Making sure to keep track of all its components, in this case, its nonterminals, productions, and starting points
@@ -136,7 +181,27 @@ is no defined algorithm for this task, I decided to create my own. It follows fo
 it covers existing production rules and “mutate” it, parse the “mutated” sentence with newly created production rules, rinse and
 repeat. Lets see this in code:
 
-![NLP Contributors](/assets/post2/main_method.png){: width="800"}
+<!--![NLP Contributors](/assets/post2/main_method.png){: width="800"}-->
+{% highlight py linenos %}
+posInSentence = []
+overallStartingNonTerminals = []
+overallStartingAndLeafNonTerminals = [] # Step 1
+overallProductionsFound = []
+rollingID = 0
+
+for sentence in quotes:
+    print("-------Start of Algorithm-------")
+    posInSentence = getPOSOfSentence(sentence) # Step 2
+    unfoundProductionsForNonTerminals = mutateListWithAlreadyDeclaredProductions(posInSentence) # Step 3
+    print("Displaying unfound nonterminals after mutation process: " + unfoundProductionsForNonTerminals.__str__())
+    determineNonterminalsThatIsChildAndStart(unfoundProductionsForNonTerminals) # Step 4
+    performRightToLeftProductionCreation(unfoundProductionsForNonTerminals) # Step 5
+    posInSentence.clear() # Step 6
+    print("Our new starting nonterminals: " + overallStartingNonTerminals.__str__())
+    print("Starting and Leaf nonterminals: " + overallStartingAndLeafNonTerminals.__str__())
+    print("Overall productions found thus far: " + overallProductionsFound.__str__())
+    print("-------End of Algorithm-------")
+{% endhighlight %}
 
 1. I keep track of five things in the overall program. Will go into detail for each later
 2. Method that returns the Part of Speech(POS) for a sentence
@@ -151,7 +216,21 @@ it by hand for a few sentences to ensure it was a feasible approach.
 
 However, it looks simple from this viewpoint, but let’s take a closer look at each method, starting with how I get the POS:
 
-![NLP Contributors](/assets/post2/get_POS_method.png){: width="800"}
+<!--![NLP Contributors](/assets/post2/get_POS_method.png){: width="800"}-->
+{% highlight py linenos %}
+def getPOSOfSentence(sentence):
+    global overallProductionsFound 
+    print("Sentence: " + sentence) # Step 1
+    temp = []
+    for word_and_pos in nltk.pos_tag(word_tokenize(sentence)): # Step 2
+        temp.append(Nonterminal(word_and_pos[1])) # Step 3
+        newTerminal = Production(Nonterminal(word_and_pos[1]), [word_and_pos[0]]) # Step 4
+        if overallProductionsFound.count(newTerminal) == 0: # Step 5
+            overallProductionsFound.append(newTerminal)
+
+    print("All POS found in sentence: " + temp.__str__())
+    return temp
+{% endhighlight %}
 
 1. I track overallProductionsFound and the sentences POS in temp
 2. for loop with iterate on each word in the sentence getting its POS
@@ -178,7 +257,43 @@ Now that we have our POS for the sentence and the initial production rules, we c
 production rules satisfying the condition A -> BC. However, we wouldn’t want to create duplicate productions while parsing 
 this array. Hence, we will now mutate this array to match existing production rules:
 
-![NLP Contributors](/assets/post2/mutate_method.png){: width="800"}
+<!--![NLP Contributors](/assets/post2/mutate_method.png){: width="800"}-->
+{% highlight py linenos %}
+def mutateListWithAlreadyDeclaredProductions(initalNonTerminals):
+    global overallProductionsFound
+    global overallStartingNonTerminals # Step 1
+    foundExistingProduction = False
+
+    if overallProductionsFound.__len__() != 0:  # Step 2
+        index = len(initalNonTerminals) - 1
+        while index > 0: # Step 3
+            lhs = initalNonTerminals.__getitem__(index - 1) # Step 4
+            rhs = initalNonTerminals.__getitem__(index)
+
+            for production in overallProductionsFound:
+                if production.rhs().__eq__((lhs, rhs)): # Step 5
+                    initalNonTerminals.pop(index)
+                    initalNonTerminals.pop(index - 1) # Step 6
+                    initalNonTerminals.insert(index-1, production.lhs())
+                    foundExistingProduction = True # Step 7
+                    break
+            index -= 2 # Step 8
+            if index == 0:
+                lhs = initalNonTerminals.__getitem__(index)
+                rhs = initalNonTerminals.__getitem__(index+1)
+                for production in overallProductionsFound:
+                    if production.rhs().__eq__((lhs, rhs)): # Step 9
+                        initalNonTerminals.pop(0)
+                        initalNonTerminals.pop(0)
+                        initalNonTerminals.insert(0, production.lhs())
+                        foundExistingProduction = True
+                        break
+
+    if (foundExistingProduction == True):
+        mutateListWithAlreadyDeclaredProductions(initalNonTerminals) # Step 10
+
+    return initalNonTerminals
+{% endhighlight %}
 
 1. I keep track if I foundExistingProductions while parsing (Ignore overallStartingNonTerminals as this was a typo)
 2. A conditional to find out if we have production rules defined
