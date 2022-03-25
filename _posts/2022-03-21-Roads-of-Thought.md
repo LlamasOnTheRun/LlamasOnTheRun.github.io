@@ -432,7 +432,42 @@ find that this method is rather similar in pattern to mutateListWithAlreadyDecla
 to refactor it in future, as I can merge the two to accomplish both tasks based on a boolean flag. Regardless, let’s see 
 this algorithm in action:
 
-![NLP Contributors](/assets/post2/left_to_right_method.png){: width="800"}
+<!--![NLP Contributors](/assets/post2/left_to_right_method.png){: width="800"}-->
+{% highlight py linenos %}
+def performRightToLeftProductionCreation(unfoundNonTerminals):
+    global rollingID
+    global overallProductionsFound # Step 1
+    global overallStartingNonTerminals
+
+    index = len(unfoundNonTerminals) - 1
+    newNonTerminals = [] # Step 2
+    while index > 0:
+        lhs = unfoundNonTerminals.__getitem__(index - 1)
+        rhs = unfoundNonTerminals.__getitem__(index)
+        production = Production(Nonterminal(rollingID.__str__()), [lhs, rhs]) # Step 3
+        rollingID = rollingID + 1
+
+        overallProductionsFound.insert(0, production)
+        unfoundNonTerminals.pop(index)
+        unfoundNonTerminals.pop(index-1) # Step 4
+        newNonTerminals.insert(0, production.lhs())
+
+        index -= 2
+        if index == 0:
+            lhs = unfoundNonTerminals.__getitem__(index)
+            production = Production(Nonterminal(rollingID.__str__()), [lhs, production.lhs()])
+            overallProductionsFound.insert(0, production) # Step 5
+            unfoundNonTerminals.pop(index)
+
+            newNonTerminals.pop(index)
+            newNonTerminals.insert(0, production.lhs())
+            rollingID = rollingID + 1
+
+    if newNonTerminals.__len__() > 1:
+        performRightToLeftProductionCreation(newNonTerminals) # Step 6
+    elif newNonTerminals.__len__() != 0:
+        overallStartingNonTerminals.append(newNonTerminals.pop()) 
+{% endhighlight %}
 
 1. I keep track a rollingID I increment for each new production rule, overallProductionsFound, and overallStartingNonTerminals
 2. Begin the index at the last element and create a array called newNonTerminals to track new productions created from unfoundNonTerminals
