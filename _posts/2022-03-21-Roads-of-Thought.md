@@ -320,7 +320,33 @@ Hence, mutateListWithAlreadyDeclaredProductions() was made to satisfy this need.
 the council does.” Let’s say I had the array with two copies of this sentence. I should expect this sentence to map back 
 to the same S. Lets see this in action:
 
-![NLP Contributors](/assets/post2/POS_terminal_output.png)
+{% highlight terminal %}
+-------Start of Algorithm-------
+Sentence: Agree with you, the council does.
+All POS found in sentence: [VB, IN, PRP, ,, DT, NN, VBZ, .]
+Displaying unfound nonterminals after mutation process: [VB, IN, PRP, 
+,, DT, NN, VBZ, .]
+Our new starting nonterminals: [4, 11]
+Starting and Leaf nonterminals: [2]
+Overall productions found thus far: [11 -> 10 9, 10 -> 8 7, 9 -> 6 5, 8 -> VB IN, 
+7 -> PRP ,, 6 -> DT NN, 5 -> VBZ ., 4 -> UH 3, 3 -> , 2, 2 -> 1 0, 1 -> DT JJ, 
+0 -> PRP ., DT -> 'No', JJ -> 'different', PRP -> 'I', . -> '.', UH -> 'Yes', 
+, -> ',', VB -> 'Agree', IN -> 'with', PRP -> 'you', DT -> 'the', NN -> 'council', 
+VBZ -> 'does']
+-------End of Algorithm-------
+-------Start of Algorithm-------
+Sentence: Agree with you, the council does.
+All POS found in sentence: [VB, IN, PRP, ,, DT, NN, VBZ, .]
+Displaying unfound nonterminals after mutation process: [11]
+Our new starting nonterminals: [4, 11]
+Starting and Leaf nonterminals: [2]
+Overall productions found thus far: [11 -> 10 9, 10 -> 8 7, 9 -> 6 5, 8 -> VB IN, 
+7 -> PRP ,, 6 -> DT NN, 5 -> VBZ ., 4 -> UH 3, 3 -> , 2, 2 -> 1 0, 1 -> DT JJ, 
+0 -> PRP . , DT -> 'No', JJ -> 'different', PRP -> 'I', . -> '.', UH -> 'Yes', 
+, -> ',', VB -> 'Agree', IN -> 'with', PRP -> 'you', DT -> 'the', NN -> 'council', 
+VBZ -> 'does']
+-------End of Algorithm-------
+{% endhighlight %}
 
 Notice that no new S was added to “Our new starting nonterminals” after coming across the same sentence twice. This is 
 mutateListWithAlreadyDeclaredProductions() at work, making sure we map back to our same S, in this case, production rule ”11”.
