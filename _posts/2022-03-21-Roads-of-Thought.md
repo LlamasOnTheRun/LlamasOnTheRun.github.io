@@ -241,7 +241,13 @@ def getPOSOfSentence(sentence):
 You can see how this method begins to add our initial production rules. In this case, it satisfies the condition A -> a 
 if we were to look back on Chomsky Normal Form’s conditions. Lets see how this prints in terminal:
 
-![NLP Contributors](/assets/post2/POS_terminal_output.png)
+<!--![NLP Contributors](/assets/post2/POS_terminal_output.png)-->
+
+{% highlight terminal %}
+-------Start of Algorithm-------
+Sentence: No different I.
+All POS found in sentence: [DT, JJ, PRP, .]
+{% endhighlight %}
 
 NLTK is doing its job well providing us the POS for each word in the sentence. In this case:
 - The maps to DT which is a determiner
