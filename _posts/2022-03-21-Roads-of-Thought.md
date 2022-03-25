@@ -363,7 +363,20 @@ Hence, determineNonterminalsThatIsChildAndStart() was created to find these. It 
 mutateListWithAlreadyDeclaredProductions() as well, considering if a subset of S was found in this updated array, then 
 it will end up being a nonterminal anyway. Here is the code used to accomplish this:
 
-![NLP Contributors](/assets/post2/child_and_start_method.png){: width="800"}
+<!--![NLP Contributors](/assets/post2/child_and_start_method.png){: width="800"}-->
+{% highlight py linenos %}
+def determineNonterminalsThatIsChildAndStart(mutatedNonTerminals):
+    global overallStartingAndLeafNonTerminals
+    global overallStartingNonTerminals # Step 1
+
+    if len(mutatedNonTerminals) > 1: # Step 2
+        for mutatedNonTerminal in mutatedNonTerminals:
+            for startingNonTerminal in overallStartingNonTerminals: # Step 3
+                if mutatedNonTerminal == startingNonTerminal and overallStartingAndLeafNonTerminals.count(mutatedNonTerminal) == 0:
+                        overallStartingAndLeafNonTerminals.append(startingNonTerminal)
+                        overallStartingNonTerminals.remove(startingNonTerminal) # Step 4
+
+{% endhighlight %}
 
 1. I keep track of overallProductionsFound and overallStartingNonTerminals
 2. Check if an existing S has been found, for it can’t be a leaf then
@@ -373,7 +386,28 @@ it will end up being a nonterminal anyway. Here is the code used to accomplish t
 This scenario is very rare in a small subset of data, but given a large corpus and examining its sentences, overallStartingAndLeafNonTerminals 
 could end up being larger. Lets see this method in action when a subset of S is used in a sentence:
 
-![NLP Contributors](/assets/post2/leaf_terminal_output.png){: width="800"}
+<!--![NLP Contributors](/assets/post2/leaf_terminal_output.png){: width="800"}-->
+{% highlight terminal %}
+-------Start of Algorithm-------
+Sentence: No different I.
+All POS found in sentence: [DT, JJ, PRP, .]
+Displaying unfound nonterminals after mutation process: [DT, JJ, PRP, .]
+Our new starting nonterminals: [2]
+Starting and Leaf nonterminals: []
+Overall productions found thus far: [2 -> 1 0, 1 -> DT JJ, 0 -> PRP ., DT -> 'No', 
+JJ -> 'different', PRP -> 'I', . -> '.']
+-------End of Algorithm-------
+-------Start of Algorithm-------
+Sentence: Yes, No different I.
+All POS found in sentence: [UH, ,, DT, JJ, PRP, .]
+Displaying unfound nonterminals after mutation process: [UH, ,, 2]
+Our new starting nonterminals: [4]
+Starting and Leaf nonterminals: [2]
+Overall productions found thus far: [4 -> UH 3, 3 -> , 2, 2 -> 1 0, 1 -> DT JJ, 
+0 -> PRP ., DT -> 'No', JJ -> 'different', PRP -> 'I', . -> '.', UH -> 'Yes', 
+, -> ',']
+-------End of Algorithm-------
+{% endhighlight %}
 
 Here we can see the sentence “No different I.” used, but then “Yes, No Different I.” is checked using a nonterminal identified 
 as a S candidate. Consider this visual representation:
