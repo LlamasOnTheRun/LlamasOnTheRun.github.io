@@ -414,17 +414,17 @@ Overall productions found thus far: [4 -> UH 3, 3 -> , 2, 2 -> 1 0, 1 -> DT JJ,
 Here we can see the sentence “No different I.” used, but then “Yes, No Different I.” is checked using a nonterminal identified 
 as a S candidate. Consider this visual representation:
 
-2->“No different I.”
+<b>2</b>-> “No different I.”
 
 Other Production Rules for Sentence…
 
 and
 
-4->”Yes, No Different I.”
+4-> ”Yes, No Different I.”
 
-4->UH 3
+4-> UH 3
 
-3->, 2
+3-> , <b>2</b>
 
 Other Production Rules for Sentence…
 
