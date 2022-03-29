@@ -428,14 +428,14 @@ and
 
 Other Production Rules for Sentence…
 
-When production rule two is used as a subset of S, we will keep track of this, and print it with the statement “Starting and 
+When production rule 2 is used as a subset of S and as a leaf, we will keep track of this, and print it in the statement “Starting and 
 Leaf nonterminals: [2]”. We will eventually use this array later on when defining our S candidates, but this is an edge 
 case to be made aware of.
 
 Now that we are parsing a sentence with existing production rules and covering its edge cases, it's time to map out new 
 production rules all the way to a new S. This is what performRightToLeftProductionCreation() aims to accomplish. You’ll 
 find that this method is rather similar in pattern to mutateListWithAlreadyDeclaredProductions(). This is something I wish 
-to refactor it in future, as I can merge the two to accomplish both tasks based on a boolean flag. Regardless, let’s see 
+to refactor it in future, as I can merge the two to accomplish both tasks based on a boolean flag of sorts. Regardless, let’s see 
 this algorithm in action:
 
 <!--![NLP Contributors](/assets/post2/left_to_right_method.png){: width="800"}-->
@@ -475,20 +475,20 @@ def performRightToLeftProductionCreation(unfoundNonTerminals):
         overallStartingNonTerminals.append(newNonTerminals.pop()) 
 {% endhighlight %}
 
-1. I keep track a rollingID I increment for each new production rule, overallProductionsFound, and overallStartingNonTerminals
+1. Define rollingID I increment for each new production rule, overallProductionsFound, and overallStartingNonTerminals
 2. Begin the index at the last element and create a array called newNonTerminals to track new productions created from unfoundNonTerminals
 3. Loops until the index arrives at the last element. Each iteration will define a new Production rule using its lhs and rhs
-4. After creating this new Production rule, I track it in overallProductionsFound and take note of the newNonTerminals
-5. Account for the case where we reach the end of our array to define a new Production rule as I have to look at previous rule created
-6. If we haven’t found our new S, perform a recursion on the method until we end up with one element in newNonTerminals, else add our new S in overallStartingNonTerminals
+4. After creating this new Production rule, I track it in overallProductionsFound and take note of it in newNonTerminals
+5. Account for the case where we reach the end of our array to define a new Production rule as my lhs and rhs will change
+6. If we haven’t found our new S, perform a recursion on the method until we end up with one element in newNonTerminals. Once condition is met, add our new S in overallStartingNonTerminals
 
-This is the final step of our process to take care of creating new production rules and also defining new S candidates.
+This is the final step of our process to take care of creating new production rules and also defining new S candidates based on our subset of sentences.
 
 You can imagine after 20 sentences, the amount of interactions/iterations with elements can be quite large. Not to mention, 
 the amount of production rules produced. In fact, we can go ahead and calculate it. Considering there are 10 words in a sentence, 
-we end up finding/creating 19 production rules for a given sentence. If N were the amount of words in a sentence, the amount of 
-production rules found/produced is 2N-1. This equation is what makes the Chomsky Normal Form so valuable, due to the ability to 
-calculate expectations with a defined rule set. Lets see what out final output is after twenty sentences:
+we end up finding/creating 19 production rules for a given sentence. If N were the amount of words in a single sentence, the amount of 
+production rules found/produced is 2N-1. This equation is what makes Chomsky Normal Form so valuable, due to the ability to 
+calculate computation expectations given a defined rule set. Lets see what out final set of productions is after twenty sentences:
 
 <!--![NLP Contributors](/assets/post2/production_rules_output.png){: width="800"}-->
 {% highlight terminal %}
@@ -581,12 +581,12 @@ DT -> 'another', NN -> 'Sky', NN -> 'walker']
 -------End of Algorithm-------
 {% endhighlight %}
 
-Wow, this is a lot of production rules! Not to mention, a lot of starting nonterminals identified! I’m sure if we mapped
+Wow, that is a lot of production rules! Not to mention, a lot of starting nonterminals identified! I’m sure if we mapped
 this entire set into a visible tree, we would not only have a huge tree to look at, but be able to reproduce all sentences 
-found in our array by starting with a S!
+found in our array by starting with a given S!
 
-At this point, I wanted to play around with my new CFG and generate some random sentences. But before I do this, I have to 
-define which production rules make up S, use NLTK CFG class to map these rules for further tool use, and then finally generate 
+At this point, I wanted to play around with my new CFG and generate some random sentences. But before I do this, I have to: 
+define which production rules make up S, use NLTK CFG class to map these rules for further use, and then finally generate 
 some random yoda sentences! Lets see this final piece in action:
 
 <!--![NLP Contributors](/assets/post2/final_print_method.png){: width="800"}-->
@@ -624,14 +624,14 @@ for sentence in quotes:
 #    count+=1
 {% endhighlight %}
 
-1. Replace Production elements with a lhs() that is mapped to what we found to be S in overallStartingNonTerminals
+1. Replace Productions lhs() to what we found to be S in overallStartingNonTerminals
 2. Append Production elements for S values that are in overallStartingAndLeafNonTerminals (Keeps original S rule intact)
 3. Use NLTK CFG class to have a central class that stores our rules
 4. Print one-liner print statements for N sentences to demonstrate how sentences are being mapped in our CFG using parser.parse()
 5. Commented out for a reason. These lines use NLTK tool generate() to craft random sentences based off our CFG
 
 Steps one and two were certainly mistakes made when looking at constructing a CFG class. I assumed CFG constructor needed 
-an array of starting Nonterminal(s), but it turns out it needed one as an identifier. Hence, I went ahead and added the 
+an array of starting Nonterminal(s), but it turns out it needed one Nonterminal as an identifier. Hence, I went ahead and added the 
 S in overallProductionsFound through a looping mechanism. I could have added this as a step in previous methods, but avoided 
 it to maintain working changes (This is why Test Driven Development is important as it helps drive and maintain your design! I 
 intended to add tests before making a solution, but my Hackathon instincts kicked in. Will be more careful next time.)
@@ -919,8 +919,8 @@ and its production rules eventually map out to its terminals. Lets translate the
 
 That’s right, if we were to perform a Breadth-First search algorithm with this tree, we would be able to reproduce our sentence. 
 Notice that the algorithm does its best to evenly distribute productions on the left and right side of S. This is why I 
-parsed and produced new Production(s) with a skip over of two elements. I wanted a tree that wasn’t too left oriented nor 
-right oriented. Instead, I wanted to make sentences as evenly distributed as possible within the confines of my existing rules.
+parsed and produced new Production(s) with a skip over of two elements (index-=2). I wanted a tree that wasn’t too left oriented nor 
+right oriented. Instead, I wanted to make sentences as evenly distributed as possible within the confines Chomsky Normal Form.
 
 Now that we know our sentences are being parsed back properly (remember S->T and T->S), let's start generating sentences. 
 NLTK provides the tools to generate sentences with your CFG given you provided terminal values or “A->a”. I did some research 
@@ -953,7 +953,7 @@ Always two there are , No more , a defiance ... That pain and The fear ?
 
 I had to wrap my generate() loop with a modulus of million to get a clean output as it would generate a multitude of sentences. 
 The above shows the structure of the sentence “Always two there are, no more, no less: a master and an apprentice.” often with 
-variations often made to the right side. This is due to the multitude of options available within the sentence as we have made 
+variations made to the right side. This is due to the multitude of options available within the given S as we have made 
 available multiple terminals/words with multiple POS to cover. The method generate() alone would try to generate every possible 
 combination, creating an observable infinite reproduction of sentences.
 
@@ -962,9 +962,9 @@ the persona of Yoda in the end. If we wanted to see sentences that have more wei
 the statistics of a probable CFG for each route available (Something to explore later on!).
 
 Regardless, we can clearly see the value and problems with a CFG with an Chomsky Normal Form approach. It does a great job 
-at defining the structure and rules to reproduce a sentence, but is terrible when it comes to generating sentences based on 
+at defining the structure and rules to reproduce a sentence, but is terrible when it comes to generating meaningful sentences based on 
 its model. The uses for this could vary from case to case. One possible use is to study unique languages and its POS to help 
-identify possible responses. Another is to identify the use of a word based on what POS it is paired with given a data set of 
+identify possible responses. Another is to identify the use of a word based on what POS it is paired with given a set of 
 sentences. Another keynote to take away is this model can be generated dynamically without interference, but has no mechanism 
 to learn over time on what an appropriate sentence looks like.
 
@@ -977,7 +977,7 @@ random sentences of any caliber is exciting enough, especially researching ways 
 and forms. I definitely want to revisit this code and further improve upon it when the time comes. But for now, I believe 
 the point is made. CFGs with no statistics applied to your NLP solutions will produce cryptic messages, but may fit some solutions.
 
-References
+<h3>References</h3>
 
 <cite>Foundations of Statistical Natural Language Processing, 1st Edition</cite>
 
