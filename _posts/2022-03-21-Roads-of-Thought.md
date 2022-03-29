@@ -11,15 +11,17 @@ summary: Our first topic discusses strategies a NLP practitioner may take when b
 
 <h3>The Foundation I Take Notes From</h3>
 
-As I was reading Foundations of Statistical Natural Language Processing, I couldn’t help but stop to look up each individual 
+As I was reading <cite>Foundations of Statistical Natural Language Processing</cite>, I couldn’t help but stop to look up each individual 
 who made a major contribution to the field of NLP. Learning about these individuals and understanding their givings to 
 the field taught me much about how our current NLP algorithms and structures came to fruition.
 
 For example, learning about Ludwig Wittgenstein's idea of the use of a word in everyday life playing a role in language. 
-Or Edward Sapir’s contributions to the study Native American language, finding how cultural patterns shape a society and language. 
+Or Edward Sapir’s contributions to the study of Native American language, finding how cultural patterns shape a society and its language. 
 It is all too fascinating to ignore!
 
 ![NLP Contributors](/assets/post2/nlp_contributors.PNG)
+
+<cite>Above is Ludwig Wittgenstein, Edward Sapir, and Noam Chomskey</cite>
 
 At the beginning of the book, the main person it likes to point out is Noam Chomsky and his ideas. He contributed to NLP 
 by creating a method to say whether a sentence is a “grammatical” or an “ungrammatical” one using a defined rule set purposed 
@@ -39,10 +41,10 @@ seem practical in reality. With this, we travel into the approaches a NLP resear
 The book argues there are two roads of thought when approaching a NLP problem. One approach is the Rationalist approach, 
 where certain knowledge of a language's structure is innate, even coining the term people have an innate language faculty. 
 Noam Chomsky is a strong supporter of this approach, stating if an advanced alien martian were to arrive at earth, he would 
-deduce there is only one language with local variants depending where you are. 
+deduce there is only one language with local variants depending on where you are. 
 
-Then there is the Empiricist approach, by applying a language model/structure, then analyzing it with statistical methods 
-to influence its output. This approach does not support the idea that there is an declared set of rules, but language itself 
+Then there is the Empiricist approach, the method of applying a language model/structure and then analyzing it with statistical methods 
+to influence its output. This approach does not support the idea that there is an declared set of rules in language, but language itself 
 adapts based on its present use.
 
 ![NLP Contributors](/assets/post2/rationalist_vs_empiricist.png)
@@ -53,7 +55,7 @@ whether a sentence is grammatical, but that its use is clearly expressed in a me
 
 For example, take a look at a Rationalist approach for crafting grammatical sentences. The below diagram used a Context 
 Free Grammar approach (CFG for short) to craft grammatical sentences. Using a set of lexical rules, it defines what types of 
-words go with its Part of Speech, such as a “Determiner” with a “Noun” is considered a “NP”. You can see how static this makes 
+words go with its Part of Speech (POS), such as a “Determiner” with a “Noun” is considered a “NP”. You can see how static this makes 
 sentence generation and how it can end up making cryptic sentences. We will dig into this more later…
 
 ![NLP Contributors](/assets/post2/CFG_with_NLP_example.png)
@@ -65,11 +67,11 @@ question. The Empirest approach declares the answer is in the data while the Rat
 defined in nature. But my belief is there are not only two practical approaches, and one should explore the possibility of combining 
 these approaches to produce more fantastic methods and results for future NLP problems.
 
-To look into this question, I was heavily influenced by Kenneth Church and Mark Liberman’s latest paper The Future of Computational 
-Linguistics: On Beyond Alchemy. The paper points out other approaches as well such as Associationism (the frequency of X and 
+To look into this question, I was heavily influenced by Kenneth Church and Mark Liberman’s latest paper <cite>The Future of Computational 
+Linguistics: On Beyond Alchemy</cite>. The paper points out other approaches such as Associationism (the frequency of X and 
 Y will influence the use of X and Y more in the future) and Connectionism (the modeling of neural networks to produce intellectual 
 responses) and points out how approaches rise and fall based on the latest discoveries/leaders in the industry. If one were to 
-see the connections that could be drawn between these approaches, I truly believe there are hidden developments waiting to be discovered.
+see the connections that could be drawn between these approaches, I truly believe there are hidden developments just waiting to be discovered.
 
 They also reinforce the idea that young researchers who rebel against the precedent to find new practices are the future 
 for the industry, but recognize the risks associated with it can lead to pure rejection and wasted time. I feel the risk is 
@@ -78,7 +80,8 @@ am so bold to say there must be more than meets the eye.
 
 <h3>Context Free Grammar Challenge</h3>
 
-To show the power of a CFG, I decided to make one using a set of sentences. To further challenge myself, I wanted to make it 
+To show the power of CFGs, I decided to make one using a set of sentences. 
+To further challenge myself, I wanted to make it 
 into the Chomsky Normal Form considering we brought up Noam Chomsky’s idea of a “grammatical” sentence. A grammar is considered 
 in Chomsky Normal Form if it follows a certain set of rules:
 
@@ -101,17 +104,17 @@ of PEMDAS operation rules for more complex equations. See how this maps in a CFG
 
 Note that given a more complex equation, a CFG could be mapped in many different ways. The same thing goes for language as well.
 
-Now what makes Chomsky Normal Form so attractive when making your CFG? It is due to its simplicity of rules to be met, 
+Now what makes Chomsky Normal Form so attractive when making your CFG? It is due to: its simplistic set of rules to be met, 
 attractive existing algorithms such as CYK to identify if a sentence can be made into Chomsky Normal Form in a reasonable time, 
 and the multitude of proofs and analysis made with the given rule set. For example, let’s say we have the sentence “Welcome to my home.” 
-I can identify that I have five values in this sentence (including the period) and can say if I had a CFG that parsed this 
-sentence, I would end up with 9 production rules (A->BC). Later on, you will see how I came to this conclusion, but this 
-is one of the few examples on how CFGs are useful in defining computation expectation.
+I can identify that I have five values/terminals in this sentence (including the period) and can say if I had a CFG that parsed this 
+sentence in Chomsky Normal Form, I would end up with 9 production rules (A->BC). Later on, you will see how I came to this conclusion, but this 
+is one of the few examples on how CFGs are useful in defining computation expectations.
 
 Now, to add some humor to the problem and solution. Considering CFGs often create sentences that provide little meaning 
 or seem metaphorical in nature, I decided to use sentences only Yoda from Star Wars would use. It seems appropriate considering 
 if you were to try to understand a sentence produced by a CFG, it would come off as a riddle. Hence, I will try to craft a 
-yoda test generator using a generated CFG.
+yoda text generator using a CFG in Chomsky Normal Form.
 
 ![NLP Contributors](/assets/post2/yoda.png)
 
@@ -120,7 +123,7 @@ yoda test generator using a generated CFG.
 <h3>Coding Solution</h3>
 
 I decided to solve this problem in Python using the NLTK package, a popular package for NLP solutions. First, we will need 
-data to analyze and feed to our CFG. Scouring the internet, I found a array on github of Yoda sentences to use, and added 
+data to analyze and feed to our CFG. Scouring the internet, I found an array on github of Yoda sentences to use, and added 
 additional ones to cover some edge cases:
 
 <!--![NLP Contributors](/assets/post2/yoda_sentences.png){: width="700"}-->
@@ -178,8 +181,8 @@ One of the few challenges of generating a CFG with a random set of sentences is:
 While there are algorithms to modify an existing CFG to Chomsky Normal Form, it gets more complicated to generate a CFG 
 from the ground up while ensuring it meets its rules and satisfies all previous sentences. After googling and realizing there 
 is no defined algorithm for this task, I decided to create my own. It follows four steps: Find the POS of a sentence, see if 
-it covers existing production rules and “mutate” it, parse the “mutated” sentence with newly created production rules, rinse and
-repeat. Lets see this in code:
+it covers existing production rules and “mutate” it, parse the “mutated” sentence with newly created production rules, and rinse and
+repeat. Lets see this pattern in code:
 
 <!--![NLP Contributors](/assets/post2/main_method.png){: width="800"}-->
 {% highlight py linenos %}
@@ -205,16 +208,16 @@ for sentence in quotes:
 
 1. I keep track of five things in the overall program. Will go into detail for each later
 2. Method that returns the Part of Speech(POS) for a sentence
-3. Method that returns POS in a modified array with existing productions
-4. Method that determines if a S was found as a leaf of a sentence
+3. Method that modifies POS with existing productions (My "Mutation")
+4. Method that determines if a S was also found as a leaf of a sentence
 5. Parses the POS with possible mutations and creates new production rules with a new “S”
 6. Clears the POS for the sentence and starts again
 
-Finding this method of approach required some research into existing algorithms to see what I could modify them to fit my use case. 
+Finding this method of approach required some research into existing algorithms to see what I could modify to fit my use case. 
 I used a combination of steps as reference from converting CFG to Chomsky Normal Form algorithm to CYK algorithm. I even performed 
 it by hand for a few sentences to ensure it was a feasible approach.
 
-However, it looks simple from this viewpoint, but let’s take a closer look at each method, starting with how I get the POS:
+However, it looks simple from this viewpoint, so let’s take a closer look at each method, starting with how I get the POS:
 
 <!--![NLP Contributors](/assets/post2/get_POS_method.png){: width="800"}-->
 {% highlight py linenos %}
@@ -233,13 +236,13 @@ def getPOSOfSentence(sentence):
 {% endhighlight %}
 
 1. I track overallProductionsFound and the sentences POS in temp
-2. for loop with iterate on each word in the sentence getting its POS
+2. for loop that iterates on each word in the sentence getting its POS
 3. Append the POS for the word in temp
-4. Create a Production that maps a Nonterminal, in this case the POS, to its given word
+4. Create a Production that maps to a terminal, in this case the POS being its nonterminal
 5. Will add the Production rule only if it does not already exist in overallProductionsFound
 
-You can see how this method begins to add our initial production rules. In this case, it satisfies the condition A -> a 
-if we were to look back on Chomsky Normal Form’s conditions. Lets see how this prints in terminal:
+You can see how this method begins to add our initial production rules. In this case, it satisfies the condition "A -> a" 
+if we were to look back on Chomsky Normal Form’s conditions. Lets see how this prints in terminal for one sentence:
 
 <!--![NLP Contributors](/assets/post2/POS_terminal_output.png)-->
 
@@ -250,24 +253,23 @@ All POS found in sentence: [DT, JJ, PRP, .]
 {% endhighlight %}
 
 NLTK is doing its job well providing us the POS for each word in the sentence. In this case:
-- The maps to DT which is a determiner
-- Different maps to JJ which is a adjective
-- I maps to PRP which is a personal pronoun
-- Finally the period
+- "The" maps to "DT" which translates as a determiner
+- "Different" maps to "JJ" which translates as a adjective
+- "I" maps to "PRP" which translates as a personal pronoun
+- Finally, the period
 
-This is NLTK tools at work, with tools like word_tokenize() to split the sentence in an array of words/punctuation and pos_tag() 
+This is NLTK at work, with tools like word_tokenize() to split the sentence in an array of words/punctuation and pos_tag() 
 to determine the POS for each word in the array. We also see the first use of classes Nonterminal and Production, as a production 
 is mapped out as A->a or DT->”the”.
 
 Now that we have our POS for the sentence and the initial production rules, we can start parsing this array and create our 
 production rules satisfying the condition A -> BC. However, we wouldn’t want to create duplicate productions while parsing 
-this array. Hence, we will now mutate this array to match existing production rules:
+this array. Hence, we will now mutate this array to match with existing production rules:
 
 <!--![NLP Contributors](/assets/post2/mutate_method.png){: width="800"}-->
 {% highlight py linenos %}
 def mutateListWithAlreadyDeclaredProductions(initalNonTerminals):
-    global overallProductionsFound
-    global overallStartingNonTerminals # Step 1
+    global overallProductionsFound # Step 1
     foundExistingProduction = False
 
     if overallProductionsFound.__len__() != 0:  # Step 2
@@ -301,19 +303,19 @@ def mutateListWithAlreadyDeclaredProductions(initalNonTerminals):
     return initalNonTerminals
 {% endhighlight %}
 
-1. I keep track if I foundExistingProductions while parsing (Ignore overallStartingNonTerminals as this was a typo)
+1. I keep track if I foundExistingProductions while parsing
 2. A conditional to find out if we have production rules defined
 3. Loop until the index is at the last element of initialNonTerminals
-4. Define what is the lhs (Left Hand Side) and rhs (Right Hand Side) of using the current index
+4. Define what is the lhs (Left Hand Side) and rhs (Right Hand Side) of the current index
 5. Loop through every production rule to check if its production.rhs() is equal to the nonterminals we defined in step 4
 6. If we found a match: remove both nonterminals with pop() and replace it with production.lhs()
-7. Mark that we have found an existing production rule with foundExistingProduction. Also break out of loop because a found production rule should be one of a kind, therefore we won’t find another
+7. Mark that we have found an existing production rule with foundExistingProduction. Also break out of loop because a found production rule
 8. Move the index over two in index-=2
 9. This step is very similar to steps 7 and 8, only difference is we define the lhs and rhs differently to not go over index bound
-10. If foundExistingProduction is true, then perform a recursion until we find find no existing production rules
+10. If foundExistingProduction is true, then perform a recursion until we find no existing production rules
 
 This parsing algorithm was actually defined after I made the algorithm for performRightToLeftProductionCreation(). I realized 
-after its creation that I needed to find a way to modify sentences with existing rules to avoid recreating them. I also 
+after its creation that I needed to find a way to modify sentences with existing rules to avoid recreating productions. I also 
 found that if I have a sentence T and a start S: if S->T, then I should have a way to map T->S.
 
 Hence, mutateListWithAlreadyDeclaredProductions() was made to satisfy this need. Consider the sentence “Agree with you, 
@@ -348,10 +350,10 @@ VBZ -> 'does']
 -------End of Algorithm-------
 {% endhighlight %}
 
-Notice that no new S was added to “Our new starting nonterminals” after coming across the same sentence twice. This is 
+Notice that no new S was added to “Our new starting nonterminals” array after coming across the same sentence twice. This is 
 mutateListWithAlreadyDeclaredProductions() at work, making sure we map back to our same S, in this case, production rule ”11”.
 
-Now that our mutated sentence is doing its job, we have to consider an edge case. Consider if a subset of S was found to 
+Now that our sentences are being parsed and replaced with preexisting rules, we have to consider an edge case. Consider if a subset of S was found to 
 be a leaf of a tree. Consider the following graph:
 
 ![NLP Contributors](/assets/post2/start_and_leaf_case.png)
@@ -379,7 +381,7 @@ def determineNonterminalsThatIsChildAndStart(mutatedNonTerminals):
 {% endhighlight %}
 
 1. I keep track of overallProductionsFound and overallStartingNonTerminals
-2. Check if an existing S has been found, for it can’t be a leaf then
+2. Check if an existing S or one element is present, for it can’t be a leaf then
 3. Will loop through mutatedNonTerminals and overallStartingNonTerminals till it finds a unique match
 4. If the conditions are met, add this nonterminal to overallStartingAndLeafNonTerminals and remove it from overallStartingNonTerminals
 
@@ -413,13 +415,17 @@ Here we can see the sentence “No different I.” used, but then “Yes, No Dif
 as a S candidate. Consider this visual representation:
 
 2->“No different I.”
+
 Other Production Rules for Sentence…
 
 and
 
 4->”Yes, No Different I.”
+
 4->UH 3
+
 3->, 2
+
 Other Production Rules for Sentence…
 
 When production rule two is used as a subset of S, we will keep track of this, and print it with the statement “Starting and 
