@@ -13,17 +13,17 @@ summary: A introduction to the NLP Journey
 I have often asked myself these past days why I choose to pursue Natural Language Processing (NLP) as a road of study in 
 the vast space of fields present in Computer Science. The truth is: I am still trying to find that answer.
 
-One thought that arose is I was captivated when I took my first attempt to build a chatbot. The project afterall, 
+One thought that arose was my captivated interest when I took my first attempt to build a chatbot. The project afterall, 
 transfixed my mind on the subject, as it now begs for another attempt to rebuild it and explore its unfound improvements.
 
-Another thought as to why is because I am truly fascinated by the idea of human language and computer interpretation. 
+Another thought as to why is because I am truly fascinated by the idea of interpreting human language through computation. 
 The very thing we as humans use, a human design from the very beginning of man, is able to be programmed and understood 
-from the very machines we made is truly a fascinating subject worth pursuing.
+from the very machines we make is truly a fascinating subject worth pursuing.
 
 Maybe it is a combination of both these points, for my hope is exploring the horizons of what the field has to offer compels 
 me to find meaning in it all.
 
-I hope you, dear reader, are as captivated as I am, as we sail into the field of Natural Language Processing (NLP) to 
+I hope you dear reader are as captivated as I am, as we sail into the field of NLP to 
 learn and find new ideas, theories, and practical usages that improve the lives of those around us.
 
 <h3>What is NLP</h3>
@@ -33,24 +33,24 @@ How you interpret the language and use its contents for analysis varies dependin
 
 For example, like mentioned above, one could make a chatbot to inform consumers of a particular topic. You can even go
 further, and try to make a chatbot that is conversational in nature. Many enterprises attempt this with many prototypes 
-being made available (Some even remembering the context of a conversation and applying it later!)
+being made available (Some even remembering the context of a conversation and applying it for later use!)
 
 Another example is the analysis of a large body of text or a corpus. One could for example identify the use of a word in 
 various sentences of a corpus, and identify the genre of the corpus if it were a book, or how the word was used based on 
 when it was published. After all, the use of a word changes based on the time period it is being used.
 
 These are the types of problems I want to try to solve. Not only do I want to craft the solution, I want to share it as 
-well! No one can learn in a silo, so I want my notes and solutions to be viewed with critical thought and hear your opinions 
+well! No one can learn in a silo, so I want my notes and solutions to be viewed with critical thought and I beg to hear your opinions 
 as well. Only then, I will be able to see the error and at least see the other side of the fence!
 
 <h3>The Point of Beginning</h3>
 
-Every journey has a point of beginning. Mine was at the Code Orange Internship program Discover Financial offered at my 
+Every journey has a point of beginning. Mine was at the Internship program "Code Orange" at Discover Financial offered at my 
 college, NIU. For three semesters, I was tasked with one assignment and charged to build it from the ground up. A chatbot 
 that is able to interpret user responses and give an appropriate answer back.
 
 How intimidating it was to be charged with such an assignment for my first internship. To interpret any text and ensure it 
-returned a proper response was challenging to conceptualize at the beginning and required much trial and error when put to practice.
+returns a proper response was challenging to conceptualize at the beginning and required much trial and error when put to practice.
 
 ![Discover NIU Location](/assets/post1/discover_niu_internship.png)
 
@@ -65,8 +65,8 @@ of thought and inspiration, now I truly wish to understand its full capabilities
 
 <h3>The Hill to Overcome</h3>
 
-The stepping stone I decided to use to further my pursuit into the field is a book called Foundations of Statistical 
-Natural Language Processing by Christopher D. Manning and Hinrich Schütze.
+The stepping stone I decided to use to further my pursuit into the field is a book called <cite>Foundations of Statistical 
+Natural Language Processing by Christopher D. Manning and Hinrich Schütze.</cite>
 
 ![NLP Book](/assets/post1/foundations_of_natural_langauge_book.png)
 
