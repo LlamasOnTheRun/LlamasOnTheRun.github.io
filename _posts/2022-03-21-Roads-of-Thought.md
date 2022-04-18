@@ -917,7 +917,7 @@ and its production rules eventually map out to its terminals. Lets translate the
 
 ![NLP Contributors](/assets/post2/sentence_tree_example_visual.png)
 
-That’s right, if we were to perform a Breadth-First search algorithm with this tree, we would be able to reproduce our sentence. 
+That’s right, if we were to perform a Depth-First search algorithm with this tree, we would be able to reproduce our sentence. 
 Notice that the algorithm does its best to evenly distribute productions on the left and right side of S. This is why I 
 parsed and produced new Production(s) with a skip over of two elements (index-=2). I wanted a tree that wasn’t too left oriented nor 
 right oriented. Instead, I wanted to make sentences as evenly distributed as possible within the confines Chomsky Normal Form.
