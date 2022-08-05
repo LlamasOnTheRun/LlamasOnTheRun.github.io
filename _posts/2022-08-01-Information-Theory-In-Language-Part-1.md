@@ -28,7 +28,7 @@ of simply flipping a coin. There are more variables to consider, such as how oft
 used with another, a word used in a particular section of time or place,
 a collocation or phrase is uttered at a given event, etc. The list could go on and on
 if you put your mind to it, and you'll find the use case that is aimed to be measured
-can yield interesting findings when examining language regarding similar topics.
+can yield interesting findings when examining language.
 
 To draw these associations between one event with another, you need to count distributions
 of data and track when one event overlaps with another. For example, lets say I started to
@@ -56,16 +56,88 @@ if I were to try and find a random band member's name in both articles.
 
 The probability of me finding Anthony in **Article#1** comes up as $$ \frac{1}{2} $$ while for
 **Article#2** I find Anthony $$ \frac{1}{3} $$ of the time. To find the probability of finding Anthony
-in both articles out of all names requires us to find the _joint probability_. This is defined as:
+in both articles out of all names requires us to find the _joint distribution_. This is defined as:
 
 $$ p(x, y) = p(x) \times p(y) $$
 
-In our case, finding Anthony in both articles by choosing a random band member name
-is:
+In our case, the probability of finding Anthony in both articles by choosing the first random band member name
+I find is:
 
-$$ p(x,y) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6} $$
+$$ p(\text{Anthony In Article#1, Anthony in Article#2}) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6} $$
 
-(Start then on conditional probability here)
+But let's say I wanted to know the relationship between band members in these articles,
+such that I wanted to see **how often** a band member's name occurred **given**
+another band member is mentioned. A use case for this is possibly to see how often
+a pair of band members is considered a good pair by the media. In this case, 
+I would be calculating the _conditional distribution_. This is defined as:
+
+$$ p(x\mid y) = \frac{p(x,y)}{ p_{Y}(y) } $$
+
+Another way of looking at $$ p(x\mid y) $$ is **what is the probability of x given y is
+already known**. But wait, what is then $$ p_{Y}(y) $$? This is called the _marginal distribution_.
+Think of this as totalling up the probabilities of the event y happening with each event x.
+After all, to truly know the relationship of these two values, we have to know how y 
+behaves for every instance of x, to truly understand how much of a dependence in has on x.
+You could also apply the opposite logic to x with $$ p_{X}(x) $$.
+
+<!--TODO Add equation for marginal distribution here-->
+
+Now, back to our example. One thing to note about conditional distributions, they
+work best when a set of events **are neither independent nor mutually exclusive**. I couldn't
+for example, try to find the probability of finding Anthony's name in both articles given
+I know the probability of finding Flea's name is in both articles. Both are 
+independent events because one as no influence over the other, and vice versa. Such
+that:
+
+$$ p(\text{Anthony In Article#1&2}\mid \text{Flea In Article#1&2}) 
+= p(\text{Anthony In Article#1&2}) $$
+
+$$ p(\text{Flea In Article#1&2}\mid \text{Anthony In Article#1&2}) 
+= p(\text{Flea In Article#1&2}) $$
+
+Another puzzling piece, I need to find a way to group these events with a limited subset
+of data. I couldn't group it by article because I am currently guaranteed to find
+Anthony and Flea mentioned in both articles, such that:
+
+$$ p(\text{Anthony In an Article}\mid \text{Flea In an Article}) = 1 $$
+
+$$ p(\text{Flea In an Article}\mid \text{Anthony In an Article}) = 1 $$
+
+Maybe if I had 100 or 1000 articles, I am bound to find some that mention only Flea and some
+that only mention Anthony. But even then, am I truly solving the problem of finding relations
+between band members? What if Flea was only mentioned once when Anthony was mentioned
+several times in a given article? It wouldn't be fair to say then that the article identifies
+Flea and Anthony as having a relation. In this case, it's a matter of grouping your
+data in such a way that allows you to still solve the problem. So, lets group the
+data from articles to sentences. Such that:
+
+**Article #1&2** sentences with mentioned band member:
+
+- Total Sentences: 42
+- Anthony mentioned in a sentence: 8
+- Flea mentioned in a sentence: 9
+- Anthony and Flea mentioned in a sentence: 3
+
+<!--TODO need to mention Anthony paired with every other band member 
+and Flea paired with every other band member-->
+
+Now we're talking. By grouping the data to lower groupings, we can now start to see
+relationships form in the text. We could even go further with these groupings by splitting
+words into grouping of 5 and counting the times we see these two events. But for the sake of
+a simple (as it can be) example, lets see what the conditional distributions are:
+
+$$ = p(\text{Anthony is in the sentence}\mid \text{Flea is in the sentence}) 
+\\
+\implies\frac{\text{Probability of Anthony and Flea mentioned in a sentence}}
+{\text{Marginal Distribution of Flea with each band member}} 
+\\
+\implies\frac{}{}
+$$
+
+And
+
+$$ p(\text{Flea is in the sentence}\mid \text{Anthony is in the sentence}) 
+= 1 $$
 
 <h3>Information Theory in Language</h3>
 
@@ -81,6 +153,8 @@ $$ p(x,y) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6} $$
 
 <cite>Foundations of Statistical Natural Language Processing, 1st Edition</cite>
 
-[]()
+[Investopedia Conditional Probability Example](https://www.investopedia.com/terms/c/conditional_probability.asp)
+
+[Conditional Distribution Info](https://corporatefinanceinstitute.com/resources/knowledge/other/conditional-probability/)
 
 More coding references are provided in README.md in git repo [Here]()
