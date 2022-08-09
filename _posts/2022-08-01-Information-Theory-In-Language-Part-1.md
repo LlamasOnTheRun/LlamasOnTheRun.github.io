@@ -166,6 +166,12 @@ information theory comes into play.
 
 <h3>Information Theory in Language</h3>
 
+- Discuss Claude Shannon and contributions to Information Theory
+
+- Talk about Entropy and its uses
+
+- Discuss importance of Shannon's Noisy Channel Model in NLP
+
 <h3>Encoding and Decoding Information to Bits</h3>
 
 <h3>Entropy and Hoffman Encoding Challenge</h3>
