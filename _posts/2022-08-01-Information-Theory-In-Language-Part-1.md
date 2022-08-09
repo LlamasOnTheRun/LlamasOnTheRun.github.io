@@ -14,6 +14,12 @@ a solution.”
 
 <h3>Probability In NLP</h3>
 
+While you could argue that language is something that that can't be
+conjured the same way we produce words, through probability, one could measure
+relationships of words, sentences, paragraphs, articles, books, etc and aim to get as
+close as possible to human speech and measure predictability in a word set.
+
+But how is probability used in language? 
 By definition, the act of probability is "the extent to which something is probable; 
 the likelihood of something happening or being the case." But how does one end up
 measuring something that could likely happen. It all starts to man's basic ability, 
@@ -33,7 +39,11 @@ can yield interesting findings when examining language.
 To draw these associations between one event with another, you need to count distributions
 of data and track when one event overlaps with another. For example, lets say I started to
 track how often band members are mentioned in two entertainment articles. Let's say the band
-is Red Hot Chili Peppers to throw some fun into the problem. In the articles, I find:
+is Red Hot Chili Peppers to throw some fun into the problem. 
+
+![red_hot_chili_peppers.png](/assets/post3/red_hot_chili_peppers.png)
+
+In the articles, I find:
 
 **Article#1** mentioned band member:
 
@@ -49,10 +59,10 @@ is Red Hot Chili Peppers to throw some fun into the problem. In the articles, I 
 - John Frusciante 0 times
 - Flea (Michael Balzary) 7 times
 
-By simply counting the names of these band members in the article, I could then map out
-a probability space and find associations between the band members in these two articles. 
-In this case, I want to find the probability of finding Anthony Kiedis
-if I were to try and find a random band member's name in both articles. 
+By simply counting the names of these band members in both articles, I could then map out
+a probability space and find associations between the band members. 
+In this case, I want to find the probability of finding Anthony Kiedis in both articles
+if I were to try and find a random band member's name. 
 
 The probability of me finding Anthony in **Article#1** comes up as $$ \frac{1}{2} $$ while for
 **Article#2** I find Anthony $$ \frac{1}{3} $$ of the time. To find the probability of finding Anthony
@@ -63,7 +73,8 @@ $$ p(x, y) = p(x) \times p(y) $$
 In our case, the probability of finding Anthony in both articles by choosing the first random band member name
 I find is:
 
-$$ p(\text{Anthony In Article#1, Anthony in Article#2}) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6} $$
+$$ p(\text{Anthony In Article#1, Anthony in Article#2}) = 
+\frac{1}{2} \times \frac{1}{3} = \frac{1}{6} = 16.6667\% $$
 
 But let's say I wanted to know the relationship between band members in these articles,
 such that I wanted to see **how often** a band member's name occurred **given**
@@ -75,9 +86,13 @@ $$ p(x\mid y) = \frac{p(x,y)}{ p_{Y}(y) } $$
 
 Another way of looking at $$ p(x\mid y) $$ is **what is the probability of x given y is
 already known**. But wait, what is then $$ p_{Y}(y) $$? This is called the _marginal distribution_.
+This is defined as:
+
+$$ p_{Y}(y) = \sum_{x} p(x,y) $$
+
 Think of this as totalling up the probabilities of the event y happening with each event x.
 After all, to truly know the relationship of these two values, we have to know how y 
-behaves for every instance of x, to truly understand how much of a dependence in has on x.
+behaves for every instance of x, to truly understand how much of a dependence it has on x.
 You could also apply the opposite logic to x with $$ p_{X}(x) $$.
 
 <!--TODO Add equation for marginal distribution here-->
@@ -113,13 +128,12 @@ data from articles to sentences. Such that:
 
 **Article #1&2** sentences with mentioned band member:
 
-- Total Sentences: 42
-- Anthony mentioned in a sentence: 8
-- Flea mentioned in a sentence: 9
+- Anthony and Chad mentioned in a sentence: 2
+- Anthony and John mentioned in a sentence: 0
 - Anthony and Flea mentioned in a sentence: 3
-
-<!--TODO need to mention Anthony paired with every other band member 
-and Flea paired with every other band member-->
+- Chad and John mentioned in a sentence: 0
+- Chad and Flea mentioned in a sentence: 0
+- John and Flea mentioned in a sentence: 1
 
 Now we're talking. By grouping the data to lower groupings, we can now start to see
 relationships form in the text. We could even go further with these groupings by splitting
@@ -131,13 +145,24 @@ $$ = p(\text{Anthony is in the sentence}\mid \text{Flea is in the sentence})
 \implies\frac{\text{Probability of Anthony and Flea mentioned in a sentence}}
 {\text{Marginal Distribution of Flea with each band member}} 
 \\
-\implies\frac{}{}
+\implies\frac{3}{4} = 75\%
 $$
 
 And
 
-$$ p(\text{Flea is in the sentence}\mid \text{Anthony is in the sentence}) 
-= 1 $$
+$$ = p(\text{Flea is in the sentence}\mid \text{Anthony is in the sentence})
+\\
+\implies\frac{\text{Probability of Anthony and Flea mentioned in a sentence}}
+{\text{Marginal Distribution of Anthony with each band member}}
+\\
+\implies\frac{3}{5} = 60\%
+$$
+
+With this information, I can then say that Flea has a strong dependence with Anthony,
+while Anthony can be paired with other band members and still have a relevant presence.
+This sort of information can tell a lot given the proper use case, and can even be used
+to build complex algorithms to estimate surprise and compress information. This is where
+information theory comes into play.
 
 <h3>Information Theory in Language</h3>
 
