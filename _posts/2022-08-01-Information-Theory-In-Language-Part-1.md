@@ -166,9 +166,33 @@ information theory comes into play.
 
 <h3>Information Theory in Language</h3>
 
-- Discuss Claude Shannon and contributions to Information Theory
+Information Theory is the ability to communicate information from one source to another
+with minimal interruption and loss given noise (the interference between the source and destination) 
+is present in your process. We can thank the work of Claude Shannon for this field, as
+his original paper <cite>A Mathematical Theory of Communication</cite> gave rise to many 
+methods of estimation and NLP models that persist to this day. I couldn't help but take time
+to read a good portion of this paper, as I wanted to see the root of the foundations that
+created an entirely new field.
+
+![claude_the_juggler.png](/assets/post3/claude_the_juggler.png)
+
+<cite>Picture of Claude Shannon Juggling</cite>
+
+Claude Shannon is an individual that couldn't possibly be ignored. He was a student of
+MIT contributing to many fields such as Boolean algebra and Cryptography. His playful nature
+could be shown too as he would many fun contraptions at Bell Labs like juggling 
+machines and robotic turtles. But this playful nature did not sidetrack him from
+main problems he was aiming to solve and sharing the knowledge he has gained. His 
+collages referred to him as someone who takes on the hard problems because they were hard
+by nature. I think we can all learn a thing from Shannon in the perseverance of seeking knowledge
+when the road is wrapped in a veil.
+
+- Discuss Claude Shannon's Discovers in paper
 
 - Talk about Entropy and its uses
+
+Information Theory has a role to play when using statistical methods
+for a set of events.
 
 - Discuss importance of Shannon's Noisy Channel Model in NLP
 
@@ -187,5 +211,9 @@ information theory comes into play.
 [Investopedia Conditional Probability Example](https://www.investopedia.com/terms/c/conditional_probability.asp)
 
 [Conditional Distribution Info](https://corporatefinanceinstitute.com/resources/knowledge/other/conditional-probability/)
+
+[Contributions Made by Claude Shannon](https://www.quantamagazine.org/how-claude-shannons-information-theory-invented-the-future-20201222/)
+
+<cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
 More coding references are provided in README.md in git repo [Here]()
