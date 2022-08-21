@@ -167,12 +167,13 @@ information theory comes into play.
 <h3>Information Theory in Language</h3>
 
 Information Theory is the ability to communicate information from one source to another
-with minimal interruption and loss given noise (the interference between the source and destination) 
+with minimal interruption and loss of information given noise (the interference between 
+the source and destination) 
 is present in your process. We can thank the work of Claude Shannon for this field, as
 his original paper <cite>A Mathematical Theory of Communication</cite> gave rise to many 
 methods of estimation and NLP models that persist to this day. I couldn't help but take time
 to read a good portion of this paper, as I wanted to see the root of the foundations that
-created an entirely new field.
+created an entirely new field during his time.
 
 ![claude_the_juggler.png](/assets/post3/claude_the_juggler.png)
 
@@ -188,6 +189,21 @@ by nature. I think we can all learn a thing from Shannon in the perseverance of 
 when the road is wrapped in a veil.
 
 - Discuss Claude Shannon's Discovers in paper
+
+But what did Claude Shannon discover in his paper? His findings showed that you could make
+a model that could minimize the loss of information and estimate the amount of surprise
+for a given set of symbols. He also coined the term "bit" in this paper, as he would
+convert his symbols into 0's and 1's based on their predictability. But just how is
+the value of surprise defined for a given set of symbols? 
+This is through **entropy**, which is defined as:
+
+$$ 
+H(X) = - \sum_{x \in X} p(x) \log_{2}p(x)
+$$
+
+Shannon defines entropy in the paper as "playing a central role in information theory 
+as measures of information, choice, and uncertainty". But how does this evaluate
+surprise of a symbol?
 
 - Talk about Entropy and its uses
 
@@ -213,6 +229,8 @@ for a set of events.
 [Conditional Distribution Info](https://corporatefinanceinstitute.com/resources/knowledge/other/conditional-probability/)
 
 [Contributions Made by Claude Shannon](https://www.quantamagazine.org/how-claude-shannons-information-theory-invented-the-future-20201222/)
+
+[Brief Explanation of Claude Shannon's Findings In Communication Theory](https://www.exploratorium.edu/complexity/CompLexicon/Shannon.html)
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
