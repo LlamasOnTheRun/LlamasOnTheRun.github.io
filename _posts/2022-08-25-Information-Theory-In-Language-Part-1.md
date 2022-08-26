@@ -181,9 +181,9 @@ created an entirely new field during his time.
 
 Claude Shannon is an individual that couldn't possibly be ignored. He was a student of
 MIT contributing to many fields such as Boolean algebra and Cryptography. His playful nature
-could be shown too as he would many fun contraptions at Bell Labs like juggling 
+could be shown too, as he would make many fun contraptions at Bell Labs like juggling 
 machines and robotic turtles. But this playful nature did not sidetrack him from
-main problems he was aiming to solve and sharing the knowledge he has gained. His 
+main problems he was aiming to solve. His 
 collages referred to him as someone who takes on the hard problems because they were hard
 by nature. I think we can all learn a thing from Shannon in the perseverance of seeking knowledge
 when the road is wrapped in a veil.
@@ -204,7 +204,7 @@ as measures of information, choice, and uncertainty". But how does this evaluate
 surprise of a symbol? With $$ -\log_{2}p(x) $$, we are able to determine how much
 surprise we expect for one given symbol with a base 2 with translates to the size of 
 a bit (0 or 1). For example, consider a fair coin is flipped. The amount of bits 
-represented for heads translates as:
+represented for heads being up translates as:
 
 $$
 -\log_{2}p(1/2) = 1 \text{ bit}
@@ -232,8 +232,8 @@ $$
 We can say now an average of 1 bit is expected for a coin flip. This is a telling sign
 that there will be little surprise and information when encoding this. As the probability of
 a set of outcomes becomes more sparse and even, more information can be expected. Consider
-ten events in a local town, each having a 10% chance of occurring each year. Calculating
-the entropy for those events yield:
+the scenario of a local town having ten events, each having a 10% chance of occurring 
+each year. Calculating the entropy for those events yield:
 
 $$
 H(X) = - \sum_{x \in X} p(x) \log_{2}p(x)
@@ -248,7 +248,9 @@ the amount of information expected increases as well!
 Now, how can this be applied to
 language? When applied to language, you can determine the amount of information
 for a single word or collocation. This also means you can reduce the amount of information
-needed to communicate the proper intention. For example, lets say I was a explorer and
+needed to communicate the proper intention. 
+
+For example, lets say I was a explorer and
 wanted to let people know what city I am in. There are a tons of cities in the world, 
 each with a vibrant name. I could be in Chicago, New York, or Krungthepmahanakhon Amonrattanakosin 
 Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan 
