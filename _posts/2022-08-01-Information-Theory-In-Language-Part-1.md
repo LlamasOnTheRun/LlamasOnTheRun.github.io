@@ -188,8 +188,6 @@ collages referred to him as someone who takes on the hard problems because they 
 by nature. I think we can all learn a thing from Shannon in the perseverance of seeking knowledge
 when the road is wrapped in a veil.
 
-- Discuss Claude Shannon's Discovers in paper
-
 But what did Claude Shannon discover in his paper? His findings showed that you could make
 a model that could minimize the loss of information and estimate the amount of surprise
 for a given set of symbols. He also coined the term "bit" in this paper, as he would
@@ -203,14 +201,75 @@ $$
 
 Shannon defines entropy in the paper as "playing a central role in information theory 
 as measures of information, choice, and uncertainty". But how does this evaluate
-surprise of a symbol?
+surprise of a symbol? With $$ -\log_{2}p(x) $$, we are able to determine how much
+surprise we expect for one given symbol with a base 2 with translates to the size of 
+a bit (0 or 1). For example, consider a fair coin is flipped. The amount of bits 
+represented for heads translates as:
 
-- Talk about Entropy and its uses
+$$
+-\log_{2}p(1/2) = 1 \text{ bit}
+$$
 
-Information Theory has a role to play when using statistical methods
-for a set of events.
+Multiplying $$ p(x) $$ allows us to see the probability of this bit appearing. If we
+were to apply this back to the previous example, we would find:
 
-- Discuss importance of Shannon's Noisy Channel Model in NLP
+$$
+1/2\times-\log_{2}p(1/2) = 1/2
+$$
+
+This means heads alone would take up half a bit, such as only being 0 or 1 in this case.
+By taking the sum ($$ \sum $$), then we are able to determine the average amount of bits 
+for a coin flip, which becomes our entropy value.
+Such that:
+
+$$
+H(X) = - \sum_{x \in X} p(x) \log_{2}p(x) 
+\implies p(1/2)\log_{2}p(1/2)+p(1/2)\log_{2}p(1/2)
+\\
+\implies \text{Average of 1 Bit for a coin flip}
+$$
+
+We can say now an average of 1 bit is expected for a coin flip. This is a telling sign
+that there will be little surprise and information when encoding this. As the probability of
+a set of outcomes becomes more sparse and even, more information can be expected. Consider
+ten events in a local town, each having a 10% chance of occurring each year. Calculating
+the entropy for those events yield:
+
+$$
+H(X) = - \sum_{x \in X} p(x) \log_{2}p(x)
+\implies 10 \times (p(1/10)\log_{2}p(1/10))
+\\
+\implies \text{Average of 3.321928094887362 Bits for an event}
+$$
+
+Considering each event has an equal probability of occurring in great numbers, 
+the amount of information expected increases as well! 
+
+Now, how can this be applied to
+language? When applied to language, you can determine the amount of information
+for a single word or collocation. This also means you can reduce the amount of information
+needed to communicate the proper intention. For example, lets say I was a explorer and
+wanted to let people know what city I am in. There are a tons of cities in the world, 
+each with a vibrant name. I could be in Chicago, New York, or Krungthepmahanakhon Amonrattanakosin 
+Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan 
+Amonphimanawatansathit Sakkathattiyawitsanukamprasit (Yes is a real city name!). 
+
+![city_of_bangkok.png](/assets/post3/city_of_bangkok.png)
+
+<cite>Also referred to as the city of Bangkok!</cite>
+
+But when
+I factor in the probability of me being in a city and apply bits in my communication, 
+then I can reduce this information
+dramatically. Krungthepmahanakhon Amonrattanakosin... (you get the point) now becomes a collection of 0's and
+1's to effectively communicate where I am. This could do wonders in saving performance in
+systems that handle large amounts of text that have recurring themes. It can also define
+the amount of information associated with a city for the given use case, defining the
+amount of surprise when a city is listed.
+
+But how is language effectively translated to 0's and 1's? While entropy can certainly
+be a useful method to evaluate surprise, it would be hard to ignore just how it is translated
+to 0's and 1's. This is where encoding comes into play.
 
 <h3>Encoding and Decoding Information to Bits</h3>
 
@@ -231,6 +290,10 @@ for a set of events.
 [Contributions Made by Claude Shannon](https://www.quantamagazine.org/how-claude-shannons-information-theory-invented-the-future-20201222/)
 
 [Brief Explanation of Claude Shannon's Findings In Communication Theory](https://www.exploratorium.edu/complexity/CompLexicon/Shannon.html)
+
+[Entropy Wikipedia Page](https://en.wikipedia.org/wiki/Entropy_(information_theory))
+
+[Walkthrough on how Entropy Equation if Formed](https://machinelearningmastery.com/what-is-information-entropy/)
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
