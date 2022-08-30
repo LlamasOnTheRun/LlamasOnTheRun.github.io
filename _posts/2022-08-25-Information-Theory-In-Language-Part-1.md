@@ -275,6 +275,24 @@ to 0's and 1's. This is where encoding comes into play.
 
 <h3>Encoding and Decoding Information to Bits</h3>
 
+While reading <cite>Foundations of Statistical Natural Language Processing, 
+1st Edition</cite>, my eyes were caught by very bottom highlighted section below:
+
+![nlp_page_62.png](/assets/post3/nlp_page_62.png)
+
+"What!? Why wouldn't we explore how these codes are generated!" I exclaimed after
+seeing this sentence. This is such a cool tool that can't possibly be ignored, and I
+had to explore it. You could say I went on a tangent with information theory and
+language, as I was shying away from entropy and digging into encoding algorithms. 
+
+Nonetheless, entropy and the encodings do have some correlation, as mentioned in
+the passage shared. When entropy is evaluated, the average amount of bits needed becomes
+apparent as well when encoding the symbols. This can be an indicator on how what how much
+information will be generated when compressing this info. 
+
+But what encodings algorithms exist to evaluate these group of bits you may ask? There
+exist multiple
+
 <h3>Entropy and Hoffman Encoding Challenge</h3>
 
 <h3>Coding Solution</h3>
