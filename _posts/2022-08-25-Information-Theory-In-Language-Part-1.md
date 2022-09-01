@@ -303,17 +303,19 @@ exist so many! Here are a few examples:
 We haven't even listed them all which is a beauty of these algorithms. Each serve a
 distinct purpose and use case, as there is not a one-size fits all solution. Instead,
 it is a wealth of tools available for use, and knowing which one to use
-is half the battle. 
+is half the battle.
 
 For example, take the difference between Shannon-Fano and Huffman
-coding. Huffman coding can produce variable length encodings such that a set of codes could be
+coding (we will mainly be discussing these two algorithms for now in the duration 
+of this post). 
+Huffman coding can produce variable length encodings such that a set of codes could be
 10, 11, 100 with various bit sizes vs. Shannon Fano coding which produces fixed length encodings such as 100,
 110, 111 where the bit size is always three. This can greatly effect the length of your
 compression depending on the probability set's distribution. 
 
 The reason these algorithms are so important is because it also provides a method 
 of avoiding to space out
-our information (hence compression!). Let's take the above passage from the book as 
+our information (hence compression). Let's take the above passage from the book as 
 an example:
 
 <center style="font-weight: 900;">1000010101111100010101110</center>
