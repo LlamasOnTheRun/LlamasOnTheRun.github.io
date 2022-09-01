@@ -287,11 +287,59 @@ language, as I was shying away from entropy and digging into encoding algorithms
 
 Nonetheless, entropy and the encodings do have some correlation, as mentioned in
 the passage shared. When entropy is evaluated, the average amount of bits needed becomes
-apparent as well when encoding the symbols. This can be an indicator on how what how much
+apparent as well when encoding the symbols. This can be an indicator on how much
 information will be generated when compressing this info. 
 
-But what encodings algorithms exist to evaluate these group of bits you may ask? There
-exist multiple
+But what entropy encoding algorithms exist to evaluate these group of bits you may ask? There
+exist so many! Here are a few examples:
+
+- Huffman Coding
+- Unary Coding
+- Arithmetic Coding
+- Shannon-Fano Coding
+- Elias Gamma Coding
+- Tunstall Coding
+
+We haven't even listed them all which is a beauty of these algorithms. Each serve a
+distinct purpose and use case, as there is not a one-size fits all solution. Instead,
+it is a wealth of tools available for use, and knowing which one to use
+is half the battle. 
+
+For example, take the difference between Shannon-Fano and Huffman
+coding. Huffman coding can produce variable length encodings such that a set of codes could be
+10, 11, 100 with various bit sizes vs. Shannon Fano coding which produces fixed length encodings such as 100,
+110, 111 where the bit size is always three. This can greatly effect the length of your
+compression depending on the probability set's distribution. 
+
+The reason these algorithms are so important is because it also provides a method 
+of avoiding to space out
+our information (hence compression!). Let's take the above passage from the book as 
+an example:
+
+<center style="font-weight: 900;">1000010101111100010101110</center>
+
+<center style="font-weight: 900;">100  00  101  01  111  100  01  01  01  110</center>
+
+<center style="font-weight: 900;">p  t  k  a  u  p  a  a  a  i</center>
+
+Notice how I am able to decipher this set of bits with minimal interruption (other than
+me manually eyeing the key and the code to ensure they are correct
+for this example). I am able to parse
+through these bits and find a set of symbols simply by looking left to right
+with the bit stack and splitting when a set is found in the key. That is the potential of
+these algorithms, the ability to encode the keys without hindering the ability to decode
+them. Note however these encodings do not work with the presence of noise in your system, 
+such that by inserting an extra bit will still generate a valid code:
+
+<center style="font-weight: 900;">100001010111<div style="font-weight: 900; color: red;display: inline-block;">1</div>1100010101110</center>
+
+<center style="font-weight: 900;">100  00  101  01  11<div style="font-weight: 900; color: red;display: inline-block;">1</div>  110  00  101  01  110</center>
+
+<center style="font-weight: 900;">p  t  k  a  u  a  t  k  a  i</center>
+
+- Talk about how probability is playing a role in this bit generation
+
+- Demonstrate how entropy and these encodings can be used together
 
 <h3>Entropy and Hoffman Encoding Challenge</h3>
 
@@ -314,6 +362,10 @@ exist multiple
 [Entropy Wikipedia Page](https://en.wikipedia.org/wiki/Entropy_(information_theory))
 
 [Walkthrough on how Entropy Equation if Formed](https://machinelearningmastery.com/what-is-information-entropy/)
+
+[Summery of all Encoding Techniques with Mention of Entropy](https://www.jncet.org/Manuscripts/Volume-6/Issue-5/Vol-6-issue-5-M-02.pdf)
+
+[Difference Between Huffman and Shannon-Fano Codings](https://iq.opengenus.org/huffman-coding-vs-fano-shannon-algorithm/)
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
