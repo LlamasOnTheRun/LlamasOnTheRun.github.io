@@ -428,7 +428,8 @@ again and reorganized tree
 
 [Summery of all Encoding Techniques with Mention of Entropy](https://www.jncet.org/Manuscripts/Volume-6/Issue-5/Vol-6-issue-5-M-02.pdf)
 
-[Difference Between Huffman and Shannon-Fano Codings](https://iq.opengenus.org/huffman-coding-vs-fano-shannon-algorithm/)
+[Difference Between Huffman and Shannon-Fano Codings (NOTE: Encoding for Shannon-Fano 
+here is wrong due to graph being left oriented vs right. This would create more bits for a higher probability!)](https://iq.opengenus.org/huffman-coding-vs-fano-shannon-algorithm/)
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
