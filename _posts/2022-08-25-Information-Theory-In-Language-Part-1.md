@@ -300,8 +300,9 @@ exist so many! Here are a few examples:
 - Elias Gamma Coding
 - Tunstall Coding
 
-We haven't even listed them all which is a beauty of these algorithms. Each serve a
-distinct purpose and use case, as there is not a one-size fits all solution. Instead,
+We haven't even listed them all which is the beauty of these algorithms. Each serve a
+distinct purpose and use case all because there is not a one-size fits all solution. 
+ Instead,
 it is a wealth of tools available for use, and knowing which one to use
 is half the battle.
 
@@ -339,7 +340,67 @@ such that by inserting an extra bit will still generate a valid code:
 
 <center style="font-weight: 900;">p  t  k  a  u  a  t  k  a  i</center>
 
-- Talk about how probability is playing a role in this bit generation
+Now that we know how to decode a set of bits, your probably wondering how we go
+about encoding it. Both Shannon and Hoffman encoding algorithms relies on 
+probability. In particular, the individual probability of symbols in a set. With
+the probability of each symbol, we can then build a binary tree that maps out our
+bits. But how we go about building that tree is what separates these two algorithms.
+Let's start with Shannon Fano encoding and use the example in the passage. The 
+pseudocode is defined:
+
+1. Organize the probabilities with its associated symbol in sorted order
+2. Split the symbols down the middle to create a new set
+3. Reference back to the total probability 
+value of the original list (Should end up to be 100% for the first time around)
+4. Perform Step 2-4 again for each set until you end up with leaf nodes that 
+contain one value
+5. Assign the least probable references with 0 and most probable references with 1
+for the entire tree
+
+Let's see this in action. First, the organized probabilities with its symbol:
+
+![shannon_fano_encoding_1.png](/assets/post3/shannon_fano_encoding_1.png)
+
+Now we split the array down the middle:
+
+![shannon_fano_encoding_2.png](/assets/post3/shannon_fano_encoding_2.png)
+
+And reference it back to its total probability:
+
+![shannon_fano_encoding_3.png](/assets/post3/shannon_fano_encoding_3.png)
+
+Now perform the same steps with each set. It should look like:
+
+![shannon_fano_encoding_4.png](/assets/post3/shannon_fano_encoding_4.png)
+
+![shannon_fano_encoding_5.png](/assets/post3/shannon_fano_encoding_5.png)
+
+Now that we have leaf nodes with one value/symbol, we can then assign bits based on
+its probability:
+
+![shannon_fano_encoding_6.png](/assets/post3/shannon_fano_encoding_6.png)
+
+With this tree, by traveling from the root to the leaf node, I am then able to define 
+encodings for each symbol. Take the letter "k" as an example. Traveling down the tree
+yields the following encoding:
+
+![shannon_fano_encoding_7.png](/assets/post3/shannon_fano_encoding_7.png)
+
+See how traveling down to each node leads to a new encoding. Starting at "1", I am
+able to define a unique encoding that can be used to communicate a message. All the
+encodings end up being:
+
+$$
+p = 000
+\\
+k = 001
+\\
+i = 01
+$$
+
+- TODO: Shoot, I need to fix this diagram. Because I made it left dependent, it ends up
+using more bits than required, which is counterproductive. Will need to take snapshots
+again and reorganized tree
 
 - Demonstrate how entropy and these encodings can be used together
 
