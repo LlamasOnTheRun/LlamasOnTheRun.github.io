@@ -391,19 +391,21 @@ yields the following encoding:
 
 See how traveling down to each node leads to a new encoding. Starting at "1", I am
 able to define a unique encoding that can be used to communicate a message. All the
-encodings end up being:
+encodings end up being exactly how we found in the passage:
 
 $$
-p = 000
+t = 00
 \\
-k = 001
+a = 01
 \\
-i = 01
+p = 100
+\\
+k = 101
+\\
+i = 110
+\\
+u = 111
 $$
-
-- TODO: Shoot, I need to fix this diagram. Because I made it left dependent, it ends up
-using more bits than required, which is counterproductive. Will need to take snapshots
-again and reorganized tree
 
 - Demonstrate how entropy and these encodings can be used together
 
