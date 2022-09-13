@@ -348,8 +348,9 @@ bits. But how we go about building that tree is what separates these two algorit
 Let's start with Shannon Fano encoding and use the example in the passage. The 
 pseudocode is defined:
 
-1. Organize the probabilities with its associated symbol in sorted order
-2. Split the symbols down the middle to create a new set
+1. Organize the probabilities with its associated symbol in sorted descending order
+2. Split the symbols down the middle where each sets total probability is close to
+one another.
 3. Reference back to the total probability 
 value of the original list (Should end up to be 100% for the first time around)
 4. Perform Step 2-4 again for each set until you end up with leaf nodes that 
@@ -357,11 +358,13 @@ contain one value
 5. Assign the least probable references with 0 and most probable references with 1
 for the entire tree
 
-Let's see this in action. First, the organized probabilities with its symbol:
+Let's see this in action. First, the organized probabilities with its symbol in
+descending order:
 
 ![shannon_fano_encoding_1.png](/assets/post3/shannon_fano_encoding_1.png)
 
-Now we split the array down the middle:
+Now we split the array based on how close the probabilities are to one another. In
+this case, we get a nice 50-50 split:
 
 ![shannon_fano_encoding_2.png](/assets/post3/shannon_fano_encoding_2.png)
 
@@ -428,8 +431,10 @@ again and reorganized tree
 
 [Summery of all Encoding Techniques with Mention of Entropy](https://www.jncet.org/Manuscripts/Volume-6/Issue-5/Vol-6-issue-5-M-02.pdf)
 
+[Encoding Algorithm Walkthrough for Shannon-Fano](https://www.geeksforgeeks.org/shannon-fano-algorithm-for-data-compression/)
+
 [Difference Between Huffman and Shannon-Fano Codings (NOTE: Encoding for Shannon-Fano 
-here is wrong due to graph being left oriented vs right. This would create more bits for a higher probability!)](https://iq.opengenus.org/huffman-coding-vs-fano-shannon-algorithm/)
+here is wrong due to more bits being produced for a higher probability!)](https://iq.opengenus.org/huffman-coding-vs-fano-shannon-algorithm/)
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
