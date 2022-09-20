@@ -389,7 +389,7 @@ yields the following encoding:
 
 ![shannon_fano_encoding_7.png](/assets/post3/shannon_fano_encoding_7.png)
 
-See how traveling down to each node leads to a new encoding. Starting at "1", I am
+See how traveling down to each node leads to a new encoding. Starting at the root, I am
 able to define a unique encoding that can be used to communicate a message. All the
 encodings end up being exactly how we found in the passage:
 
@@ -407,9 +407,36 @@ i = 110
 u = 111
 $$
 
-- Demonstrate how entropy and these encodings can be used together
+Now I can effectively communicate a message with minimal loss of information. But maybe
+I don't want to use fixed length encoding, but instead, I wish the length to vary in size.
+Better yet, maybe I want to have a coded solution on hand. 
+This is where Hoffman Encoding comes into play.
 
-<h3>Entropy and Hoffman Encoding Challenge</h3>
+<h3>Entropy and Hoffman Encoding Code Challenge</h3>
+
+For this posts coding challenge, I decided to code a solution for Hoffman Encoding
+and calculate the entropy value for what is being analyzed. 
+This will involve parsing through a text document,
+counting words that are to be measured, encoding the given words with Hoffman, and
+then calculating the entropy value for the given set.
+
+Before we do that, lets discuss on how Hoffman encoding works. Unlike Shannon-Fano
+encoding, Hoffman encoding used variable length encodings. This means the length encodings
+can vary in bit size. Such that a high probability symbol may produce "1", but the
+lowest probability symbol could expand out to 100101001... Of course, this depends
+on just how many symbols you identified in your data set.
+
+The pseudocode for Hoffman Encoding is as follows:
+
+1. Take the two lowest probabilities in your list
+2. Reference back these probabilities to a total sum
+3. Remove the two lowest probabilities and push the new total sum to the list
+4. Perform Steps 1-3 until you end up with one probability value as the root
+5. Assign 0 to the left reference and 1 to the right reference
+
+Let's go through an example. TODO
+
+Deciding on what to use as an effective dataset to measure was certainly a challenge.
 
 <h3>Coding Solution</h3>
 
@@ -437,6 +464,8 @@ $$
 
 [Difference Between Huffman and Shannon-Fano Codings (NOTE: Encoding for Shannon-Fano 
 here is wrong due to more bits being produced for a higher probability!)](https://iq.opengenus.org/huffman-coding-vs-fano-shannon-algorithm/)
+
+[Hoffman Encoding Visual Example](https://www.princeton.edu/~cuff/ele201/kulkarni_text/information.pdf)
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
