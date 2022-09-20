@@ -329,7 +329,7 @@ Notice how I am able to decipher this set of bits with minimal interruption (oth
 me manually eyeing the key and the code to ensure they are correct
 for this example). I am able to parse
 through these bits and find a set of symbols simply by looking left to right
-with the bit stack and splitting when a set is found in the key. That is the potential of
+with the bit stack and splitting when a set is found in the key. That is the benefit of
 these algorithms, the ability to encode the keys without hindering the ability to decode
 them. Note however these encodings do not work with the presence of noise in your system, 
 such that by inserting an extra bit will still generate a valid code:
