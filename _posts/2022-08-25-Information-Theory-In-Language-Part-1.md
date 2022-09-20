@@ -314,7 +314,7 @@ Huffman coding can produce variable length encodings such that a set of codes co
 110, 111 where the bit size is always three. This can greatly effect the length of your
 compression depending on the probability set's distribution. 
 
-The reason these algorithms are so important is because it also provides a method 
+The reason these algorithms are so important is that it also provides a method 
 of avoiding to space out
 our information (hence compression). Let's take the above passage from the book as 
 an example:
@@ -434,7 +434,25 @@ The pseudocode for Hoffman Encoding is as follows:
 4. Perform Steps 1-3 until you end up with one probability value as the root
 5. Assign 0 to the left reference and 1 to the right reference
 
-Let's go through an example. TODO
+Let's go through an example. Let's say I was analyzing a book to determine what location
+is often used in the text. Let's say this book is The Hobbit by J.R.R. Tolkien.
+After performing a count, there are 7 distinct locations used:
+
+- <p><div style="font-weight: 900;display: inline-block;">The Shire</div>: 24%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Goblin Town</div>: 45%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Carrock</div>: 14%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Beorn's Hall</div>: 2%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Mirkwood</div>: 2%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Long Lake</div>: 9%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Desolation of the Dragon</div>: 4%</p>
+
+(Note: This is very much dummy data and not measured. Although, I am curious to find
+a way to measure where someone is in text based on context clues. Something to look into
+in the future)
+
+TODO Show Visual Example
+
+TODO Discuss Use Case Scenario for Code
 
 Deciding on what to use as an effective dataset to measure was certainly a challenge.
 
