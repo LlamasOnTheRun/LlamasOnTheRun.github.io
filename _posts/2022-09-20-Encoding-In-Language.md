@@ -438,19 +438,21 @@ Let's go through an example. Let's say I was analyzing a book to determine what 
 is often used in the text. Let's say this book is The Hobbit by J.R.R. Tolkien.
 After performing a count, there are 7 distinct locations used:
 
-- <p><div style="font-weight: 900;display: inline-block;">The Shire</div>: 24%</p>
-- <p><div style="font-weight: 900;display: inline-block;">Goblin Town</div>: 45%</p>
-- <p><div style="font-weight: 900;display: inline-block;">Carrock</div>: 14%</p>
-- <p><div style="font-weight: 900;display: inline-block;">Beorn's Hall</div>: 2%</p>
-- <p><div style="font-weight: 900;display: inline-block;">Mirkwood</div>: 2%</p>
-- <p><div style="font-weight: 900;display: inline-block;">Long Lake</div>: 9%</p>
-- <p><div style="font-weight: 900;display: inline-block;">Desolation of the Dragon</div>: 4%</p>
+- <p><div style="font-weight: 900;display: inline-block;">The Shire(TS)</div>: 24%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Goblin Town(GT)</div>: 45%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Carrock(C)</div>: 14%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Beorn's Hall(BH)</div>: 2%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Mirkwood(M)</div>: 2%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Long Lake(LL)</div>: 9%</p>
+- <p><div style="font-weight: 900;display: inline-block;">Desolation of the Dragon(DD)</div>: 4%</p>
 
 (Note: This is very much dummy data and not measured. Although, I am curious to find
 a way to measure where someone is in text based on context clues. Something to look into
 in the future)
 
-TODO Show Visual Example
+Now, lets put this pseudocode code in action. First, we need our probability list:
+
+
 
 TODO Discuss Use Case Scenario for Code
 
