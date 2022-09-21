@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Ryan Llamas
-summary: How Information Theory plays a large role in NLP and how Encoding and Decoding Language Findings Work
+summary: How Information Theory plays a large role in NLP and How To Encode Language
 ---
 
 <h1>“Almost every problem that you come across is befuddled with all kinds of 
