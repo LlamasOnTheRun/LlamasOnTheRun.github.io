@@ -452,11 +452,57 @@ in the future)
 
 Now, lets put this pseudocode code in action. First, we need our probability list:
 
+![hoffman_encoding_1.png](/assets/post3/hoffman_encoding_1.png)
 
+Notice how it is completely unordered. Unlike Shannon Fano encoding, the hoffman encoding
+can still function regardless of the order. Now, lets take the two lowest probabilities
+and make a reference to its total:
 
-TODO Discuss Use Case Scenario for Code
+![hoffman_encoding_2.png](/assets/post3/hoffman_encoding_2.png)
 
-Deciding on what to use as an effective dataset to measure was certainly a challenge.
+![hoffman_encoding_3.png](/assets/post3/hoffman_encoding_3.png)
+
+Now the new values takes its place in the list. From there, we continue to repeat the
+process:
+
+![hoffman_encoding_4.png](/assets/post3/hoffman_encoding_4.png)
+
+![hoffman_encoding_5.png](/assets/post3/hoffman_encoding_5.png)
+
+![hoffman_encoding_6.png](/assets/post3/hoffman_encoding_6.png)
+
+![hoffman_encoding_7.png](/assets/post3/hoffman_encoding_7.png)
+
+![hoffman_encoding_8.png](/assets/post3/hoffman_encoding_8.png)
+
+![hoffman_encoding_9.png](/assets/post3/hoffman_encoding_9.png)
+
+![hoffman_encoding_10.png](/assets/post3/hoffman_encoding_10.png)
+
+![hoffman_encoding_11.png](/assets/post3/hoffman_encoding_11.png)
+
+After the last two values, all that is left to do is assign the bits to the left and
+right references:
+
+![hoffman_encoding_12.png](/assets/post3/hoffman_encoding_12.png)
+
+Now that we know how hoffman encoding works, let's jump back into the coding project.
+Deciding on what to use as a dataset to create these encodings was certainly a challenge.
+I knew I wanted to use something fun, so I eventually landed on the idea to look at
+a popular book. The book series I eventually went with was Harry Potter.
+
+![img.png](/assets/post3/harry_potter_book.png)
+
+But what to encode? I needed a common subject to look at that could be effectively
+counted without too much complexity. Locations, moods, and colors came to mind, but I
+eventually decided to go with names (similar to what I did for the red-hot chili peppers
+example). This proved to be interesting as I had to do research into some popular characters
+for the series and come up with a list of names to search for.
+
+After about four working days looking at this problem, I eventually came to a solution.
+I like to think my python coding and test case implementation has improved after
+this challenge. But it will only get better after I complete more challenges that relate
+to NLP.
 
 <h3>Coding Solution</h3>
 
