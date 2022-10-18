@@ -601,6 +601,41 @@ Of course, `perform_huffman_coding(...)` does more than graph the binary tree, a
 will also perform the algorithm to build the huffman tree and print the symbol(s) 
 set of bits.
 
+Let's go ahead and take a look at how the program goes ahead and tokenizes the book
+content with method `tokenize_harry_potter_book_philosopher_stone()`
+
+{% highlight py linenos %}
+...
+
+def tokenize_harry_potter_book_philosopher_stone():
+    url = "https://raw.githubusercontent.com/formcept/whiteboard/master/nbviewer/notebooks/data/harrypotter/Book%201" \
+    "%20-%20The%20Philosopher's%20Stone.txt"
+    bookText = requests.get(url).text
+
+    removePunctuationTokenizer = nltk.tokenize.RegexpTokenizer(r'\w+')
+    bookTextPunctuationRemoved = removePunctuationTokenizer.tokenize(bookText)
+
+    getCharacterNamesTokenizer = nltk.tokenize.RegexpTokenizer(get_regex_for_all_characters())
+    return getCharacterNamesTokenizer.tokenize(' '.join(bookTextPunctuationRemoved))
+
+...
+{% endhighlight %}
+
+Here I reference the content of the book with an url to a raw text link and make a http
+request to get it with `requests.get(url).text`. With the entire content of
+book text, I perform some filtering by removing punctuation characters with a regex
+so we can only worry about the words of the text with `nltk.tokenize.RegexpTokenizer(r'\w+')`.
+This configures the tokenizer provided by NLTK to properly parse through content when
+we call `removePunctuationTokenizer.tokenize(bookText)`. 
+
+However, we are not done! We only care about the characters of the book, not all the
+other words of the text. So in this case, we need a custom regex to focus on the characters.
+That is what `get_regex_for_all_characters()` does, as it will go to the text file
+with all the names and create this regex. With that, we configure another tokenizer,
+but this time we look as the book text with removed punctuation. With that,
+`getCharacterNamesTokenizer.tokenize(...)` will return a tokenized set with all the
+names of the characters we want. 
+
 <h3>Checkpoint</h3>
 
 <h3>References</h3>
