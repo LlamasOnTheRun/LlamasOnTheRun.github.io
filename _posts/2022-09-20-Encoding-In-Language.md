@@ -14,8 +14,8 @@ a solution.”
 
 <h3>Probability In NLP</h3>
 
-While you could argue that language is something that that can't be
-conjured the same way we produce words, through probability, one could measure
+While you could argue that language is something that can't be
+conjured the same way we produce words or phrases in a machine, through probability, one could measure
 relationships of words, sentences, paragraphs, articles, books, etc and aim to get as
 close as possible to human speech and measure predictability in a word set.
 
@@ -137,7 +137,7 @@ data from articles to sentences. Such that:
 
 Now we're talking. By grouping the data to lower groupings, we can now start to see
 relationships form in the text. We could even go further with these groupings by splitting
-words into grouping of 5 and counting the times we see these two events. But for the sake of
+words into groups versus sentences and counting the times we see these two events. But for the sake of
 a simple (as it can be) example, lets see what the conditional distributions are:
 
 $$ = p(\text{Anthony is in the sentence}\mid \text{Flea is in the sentence}) 
@@ -341,7 +341,7 @@ such that by inserting an extra bit will still generate a valid code:
 <center style="font-weight: 900;">p  t  k  a  u  a  t  k  a  i</center>
 
 Now that we know how to decode a set of bits, your probably wondering how we go
-about encoding it. Both Shannon and Hoffman encoding algorithms relies on 
+about encoding it. Both Shannon and Huffman encoding algorithms relies on 
 probability. In particular, the individual probability of symbols in a set. With
 the probability of each symbol, we can then build a binary tree that maps out our
 bits. But how we go about building that tree is what separates these two algorithms.
@@ -350,12 +350,13 @@ pseudocode is defined:
 
 1. Organize the probabilities with its associated symbol in sorted descending order
 2. Split the symbols down the middle where each sets total probability is close to
-one another.
+one another
 3. Reference back to the total probability 
 value of the original list (Should end up to be 100% for the first time around)
 4. Perform Step 2-4 again for each set until you end up with leaf nodes that 
 contain one value
-5. Assign the least probable references with 0 and most probable references with 1
+5. Assign the least probable (left) references with 0 and most probable (right)
+references with 1
 for the entire tree
 
 Let's see this in action. First, the organized probabilities with its symbol in
@@ -410,23 +411,23 @@ $$
 Now I can effectively communicate a message with minimal loss of information. But maybe
 I don't want to use fixed length encoding, but instead, I wish the length to vary in size.
 Better yet, maybe I want to have a coded solution on hand. 
-This is where Hoffman Encoding comes into play.
+This is where Huffman Encoding comes into play.
 
-<h3>Entropy and Hoffman Encoding Code Challenge</h3>
+<h3>Entropy and Huffman Encoding Code Challenge</h3>
 
-For this posts coding challenge, I decided to code a solution for Hoffman Encoding
+For this posts coding challenge, I decided to code a solution for Huffman Encoding
 and calculate the entropy value for what is being analyzed. 
 This will involve parsing through a text document,
-counting words that are to be measured, encoding the given words with Hoffman, and
+counting words that are to be measured, encoding the given words with Huffman, and
 then calculating the entropy value for the given set.
 
-Before we do that, lets discuss on how Hoffman encoding works. Unlike Shannon-Fano
-encoding, Hoffman encoding used variable length encodings. This means the length encodings
+Before we do that, lets discuss on how Huffman encoding works. Unlike Shannon-Fano
+encoding, Huffman encoding used variable length encodings. This means the length encodings
 can vary in bit size. Such that a high probability symbol may produce "1", but the
 lowest probability symbol could expand out to 100101001... Of course, this depends
 on just how many symbols you identified in your data set.
 
-The pseudocode for Hoffman Encoding is as follows:
+The pseudocode for Huffman Encoding is as follows:
 
 1. Take the two lowest probabilities in your list
 2. Reference back these probabilities to a total sum
@@ -454,7 +455,7 @@ Now, lets put this pseudocode code in action. First, we need our probability lis
 
 ![hoffman_encoding_1.png](/assets/post3/hoffman_encoding_1.png)
 
-Notice how it is completely unordered. Unlike Shannon Fano encoding, the hoffman encoding
+Notice how it is completely unordered. Unlike Shannon Fano encoding, the huffman encoding
 can still function regardless of the order. Now, lets take the two lowest probabilities
 and make a reference to its total:
 
@@ -486,7 +487,7 @@ right references:
 
 ![hoffman_encoding_12.png](/assets/post3/hoffman_encoding_12.png)
 
-Now that we know how hoffman encoding works, let's jump back into the coding project.
+Now that we know how huffman encoding works, let's jump back into the coding project.
 Deciding on what to use as a dataset to create these encodings was certainly a challenge.
 I knew I wanted to use something fun, so I eventually landed on the idea to look at
 a popular book. The book series I eventually went with was Harry Potter.
@@ -505,6 +506,100 @@ this challenge. But it will only get better after I complete more challenges tha
 to NLP.
 
 <h3>Coding Solution</h3>
+
+Let's first take a look at our data sets. For the names I am searching for, I made a text
+file with some pretty popular characters in the series. I did exclude the most popular character
+Harry for a reason. His name was used so often (as expected) that is ended up being
+about 50% of the names in the books. Removing his name, the data set became more interesting
+to examine as the data because more distributed. 
+
+{% highlight terminal %}
+Voldemort
+Ron
+Hermione
+Ginny
+Draco
+Neville
+Rubeus
+Minerva
+Severus
+Albus
+Dudley
+Petunia
+Fred
+George
+Vernon
+James
+Argus
+Lily
+Quirinus
+Seamus
+Cuthbert
+Hedwig
+Fang
+Pomona
+Filius
+Ronan
+Bane
+Mason
+Dobby
+Molly
+Lucius
+Gilderoy
+Poppy
+Ernest
+Aragog
+Myrtle
+Tom
+{% endhighlight %}
+
+But now where do I get the books? It turns out there are git repos available that house the
+text versions of the books free for use. Not only did I use one of these books, but I
+decided to use two. This allowed me to test my code with another word set to examine and account
+for edge cases, such as a character existing in one book, but not the other.
+
+Let's take a look at `main()` to see how the execution of this project is structured
+
+{% highlight py linenos %}
+...
+
+def main():
+    print("******************************* Philosophers Stone Data *******************************")
+    frequencyDistTrackerForPhilosopherStone = get_frequency_dist_tracker(tokenize_harry_potter_book_philosopher_stone())
+    print("Entropy of characters from \"Philosophers Stone\": " + str(entropy(frequencyDistTrackerForPhilosopherStone)))
+    graph_frequency_dist(frequencyDistTrackerForPhilosopherStone)
+    perform_huffman_coding(frequencyDistTrackerForPhilosopherStone)
+
+    print("\n******************************* Chamber of Secrets Data *******************************")
+    frequencyDistTrackerForChamberOfSecrets = get_frequency_dist_tracker(
+        tokenize_harry_potter_book_chamber_of_secrets())
+    print("Entropy of characters from \"Chamber of Secrets\": " + str(entropy(frequencyDistTrackerForChamberOfSecrets)))
+    graph_frequency_dist(frequencyDistTrackerForChamberOfSecrets)
+    perform_huffman_coding(frequencyDistTrackerForChamberOfSecrets)
+
+...
+{% endhighlight %}
+
+There are three parts to this program. First
+is `get_frequency_dist_tracker(...)` which
+counts the names being searched in the book text, the book text being in this case
+`tokenize_harry_potter_book_philosopher_stone()`. After it counts the amount of times
+a name has appeared in text and returns its probability, it will be saved as a reference such
+as `frequencyDistTrackerForPhilosopherStone`.
+
+I go ahead and then calculate the entropy value for this distribution by directly 
+printing it with `str(entropy(...))`. This gives
+a good indicator of how many bits on average is used for a given symbol set.
+
+After the entropy value is printed, I decided to do a little exploring with graphing
+in python, as presenting your data in a visual manner is important.
+The method call `graph_frequency_dist(...)` and `perform_huffman_coding(...)` does
+this, as it will print a bar graph of the distribution of names and a visual binary tree
+of the huffman encoding graph.
+
+Of course, `perform_huffman_coding(...)` does more than graph the binary tree, as it
+will also perform the algorithm to build the huffman tree and print the symbol(s) 
+set of bits.
 
 <h3>Checkpoint</h3>
 
@@ -531,7 +626,7 @@ to NLP.
 [Difference Between Huffman and Shannon-Fano Codings (NOTE: Encoding for Shannon-Fano 
 here is wrong due to more bits being produced for a higher probability!)](https://iq.opengenus.org/huffman-coding-vs-fano-shannon-algorithm/)
 
-[Hoffman Encoding Visual Example](https://www.princeton.edu/~cuff/ele201/kulkarni_text/information.pdf)
+[Huffman Encoding Visual Example](https://www.princeton.edu/~cuff/ele201/kulkarni_text/information.pdf)
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
