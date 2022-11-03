@@ -508,10 +508,10 @@ to NLP.
 <h3>Coding Solution</h3>
 
 Let's first take a look at our data sets. For the names I am searching for, I made a text
-file with some pretty popular characters in the series. I did exclude the most popular character
-Harry for a reason. His name was used so often (as expected) that is ended up being
-about 50% of the names in the books. Removing his name, the data set became more interesting
-to examine as the data because more distributed. 
+file with some pretty popular characters in the series. You'll find I excluded the most popular character
+Harry. There is a good reason for this. His name was used so often (as expected) that is ended up being
+about 50% of the names in the books. Removing his name, the data set was more interesting
+to examine because it became evenly distributed (or as close as it could be). 
 
 {% highlight terminal %}
 Voldemort
@@ -635,6 +635,31 @@ with all the names and create this regex. With that, we configure another tokeni
 but this time we look as the book text with removed punctuation. With that,
 `getCharacterNamesTokenizer.tokenize(...)` will return a tokenized set with all the
 names of the characters we want. 
+
+So now that I have the characters of the book being nicely packed and returned using 
+`tokenize_harry_potter_book_philosopher_stone()`, it's time to start counting them
+and determining their probabilities. This can be seen in the below code snippet with
+`get_frequency_dist_tracker(...)` and `class FreqDistTracker`
+
+{% highlight py linenos %}
+...
+
+class FreqDistTracker:
+    def __init__(self, names, probs):
+        self.names = names
+        self.probs = probs
+
+...
+
+def get_frequency_dist_tracker(names):
+    freqDistOfNames = nltk.FreqDist(names)
+    names = [name for name in freqDistOfNames]
+    probs = [freqDistOfNames.freq(name) for name in freqDistOfNames]
+    return FreqDistTracker(names, probs)
+
+...
+
+{% endhighlight %}
 
 <h3>Checkpoint</h3>
 
