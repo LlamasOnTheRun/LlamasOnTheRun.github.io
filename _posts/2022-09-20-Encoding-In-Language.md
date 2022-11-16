@@ -14,10 +14,11 @@ a solution.”
 
 <h3>Probability In NLP</h3>
 
-While you could argue that language is something that can't be
-conjured the same way we produce words or phrases in a machine, through probability, one could measure
-relationships of words, sentences, paragraphs, articles, books, etc and aim to get as
-close as possible to human speech and measure predictability in a word set.
+While you could argue that language is too unpredictable for a machine to
+produce words or phrases like us, through probability, 
+one could measure the
+relationship of words, sentences, paragraphs, and more to 
+measure predictability in a word set to see the connection that form between them.
 
 But how is probability used in language? 
 By definition, the act of probability is "the extent to which something is probable; 
@@ -65,13 +66,13 @@ In this case, I want to find the probability of finding Anthony Kiedis in both a
 if I were to try and find a random band member's name. 
 
 The probability of me finding Anthony in **Article#1** comes up as $$ \frac{1}{2} $$ while for
-**Article#2** I find Anthony $$ \frac{1}{3} $$ of the time. To find the probability of finding Anthony
+**Article#2**, I find Anthony $$ \frac{1}{3} $$ of the time. To find the probability of finding Anthony
 in both articles out of all names requires us to find the _joint distribution_. This is defined as:
 
 $$ p(x, y) = p(x) \times p(y) $$
 
 In our case, the probability of finding Anthony in both articles by choosing the first random band member name
-I find is:
+I find is
 
 $$ p(\text{Anthony In Article#1, Anthony in Article#2}) = 
 \frac{1}{2} \times \frac{1}{3} = \frac{1}{6} = 16.6667\% $$
@@ -202,7 +203,7 @@ $$
 Shannon defines entropy in the paper as "playing a central role in information theory 
 as measures of information, choice, and uncertainty". But how does this evaluate
 surprise of a symbol? With $$ -\log_{2}p(x) $$, we are able to determine how much
-surprise we expect for one given symbol with a base 2 with translates to the size of 
+surprise we expect for one given symbol with a base of 2, which translates to the size of 
 a bit (0 or 1). For example, consider a fair coin is flipped. The amount of bits 
 represented for heads being up translates as:
 
@@ -230,7 +231,9 @@ H(X) = - \sum_{x \in X} p(x) \log_{2}p(x)
 $$
 
 We can say now an average of 1 bit is expected for a coin flip. This is a telling sign
-that there will be little surprise and information when encoding this. As the probability of
+that there will be little surprise and information when encoding this. 
+
+As the probability of
 a set of outcomes becomes more sparse and even, more information can be expected. Consider
 the scenario of a local town having ten events, each having a 10% chance of occurring 
 each year. Calculating the entropy for those events yield:
@@ -239,7 +242,7 @@ $$
 H(X) = - \sum_{x \in X} p(x) \log_{2}p(x)
 \implies 10 \times (p(1/10)\log_{2}p(1/10))
 \\
-\implies \text{Average of 3.321928094887362 Bits for an event}
+\implies \text{Average of 3.321928094887362 Bits for an event in a given year}
 $$
 
 Considering each event has an equal probability of occurring in great numbers, 
@@ -254,7 +257,7 @@ For example, lets say I was a explorer and
 wanted to let people know what city I am in. There are a tons of cities in the world, 
 each with a vibrant name. I could be in Chicago, New York, or Krungthepmahanakhon Amonrattanakosin 
 Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan 
-Amonphimanawatansathit Sakkathattiyawitsanukamprasit (Yes is a real city name!). 
+Amonphimanawatansathit Sakkathattiyawitsanukamprasit (Yes, this is a real city name!). 
 
 ![city_of_bangkok.png](/assets/post3/city_of_bangkok.png)
 
@@ -314,9 +317,8 @@ Huffman coding can produce variable length encodings such that a set of codes co
 110, 111 where the bit size is always three. This can greatly effect the length of your
 compression depending on the probability set's distribution. 
 
-The reason these algorithms are so important is that it also provides a method 
-of avoiding to space out
-our information (hence compression). Let's take the above passage from the book as 
+These algorithms do wonders by taking data and shrinking it in size
+(hence compression). Let's take the above passage from the book as 
 an example:
 
 <center style="font-weight: 900;">1000010101111100010101110</center>
@@ -416,16 +418,17 @@ This is where Huffman Encoding comes into play.
 <h3>Entropy and Huffman Encoding Code Challenge</h3>
 
 For this posts coding challenge, I decided to code a solution for Huffman Encoding
-and calculate the entropy value for what is being analyzed. 
+and calculate the entropy value based on the words being analyzed. 
 This will involve parsing through a text document,
 counting words that are to be measured, encoding the given words with Huffman, and
 then calculating the entropy value for the given set.
 
 Before we do that, lets discuss on how Huffman encoding works. Unlike Shannon-Fano
-encoding, Huffman encoding used variable length encodings. This means the length encodings
+encoding, Huffman encoding used variable length encodings. This means the length 
+of the encodings
 can vary in bit size. Such that a high probability symbol may produce "1", but the
 lowest probability symbol could expand out to 100101001... Of course, this depends
-on just how many symbols you identified in your data set.
+on just how many symbols/words you identified in your set.
 
 The pseudocode for Huffman Encoding is as follows:
 
@@ -447,9 +450,9 @@ After performing a count, there are 7 distinct locations used:
 - <p><div style="font-weight: 900;display: inline-block;">Long Lake(LL)</div>: 9%</p>
 - <p><div style="font-weight: 900;display: inline-block;">Desolation of the Dragon(DD)</div>: 4%</p>
 
-(Note: This is very much dummy data and not measured. Although, I am curious to find
+<cite>(Note: This is very much dummy data and not measured. Although, I am curious to find
 a way to measure where someone is in text based on context clues. Something to look into
-in the future)
+in the future)</cite>
 
 Now, lets put this pseudocode code in action. First, we need our probability list:
 
@@ -490,7 +493,7 @@ right references:
 Now that we know how huffman encoding works, let's jump back into the coding project.
 Deciding on what to use as a dataset to create these encodings was certainly a challenge.
 I knew I wanted to use something fun, so I eventually landed on the idea to look at
-a popular book. The book series I eventually went with was Harry Potter.
+a popular book. The book series I eventually went with was Harry Potter
 
 ![img.png](/assets/post3/harry_potter_book.png)
 
@@ -660,6 +663,45 @@ def get_frequency_dist_tracker(names):
 ...
 
 {% endhighlight %}
+
+With all the names gained from our previous function 
+`tokenize_harry_potter_book_philosopher_stone()`, I use NLTK tool 
+`nltk.FreqDist(...)` to count the amount of times a name has been used and give their
+associated probability. With the reference `freqDistOfNames`, I get the probability
+of the name with `freqDistOfNames.freq(name)`.
+
+`FreqDistTracker(...)` is a custom class I made to store information on all the names and
+their probabilities in an ordered fashion. 
+I found some trouble using NLTK's FreqDist as a standalone, so I
+made a custom class with some functions of my own to get around these issues.
+
+At this point, I now have all the probabilities for the names. I really wanted
+to see a visual representation of this data, so I made a function called 
+`graph_frequency_dist(...)` to accomplish this. This function will go ahead and make
+a bar graph with the tool `matplotlib` to show how often a name is used along
+the x-axis. This was fun to explore on, as it was interesting to find cools ways to
+explain data though visuals. After all, a picture speaks a thousand words vs an
+array filled with probabilities. Let's see what the code looks like and how it prints
+
+{% highlight py linenos %}
+...
+
+def graph_frequency_dist(freqDistributionTracker):
+    plt.bar(freqDistributionTracker.names, freqDistributionTracker.probs)
+    plt.xticks(rotation=60)
+    plt.show()
+
+...
+{% endhighlight %}
+
+![bar_graph_name_dist.png](/assets/post3/bar_graph_name_dist.png)
+
+Seems like Ron is second popular to Harry if he was in this graph. This makes sense since
+he is a frequently used companion of the main character. The same can be said for
+Hermione as well. 
+
+Using this graph, we should expect Ron to use less bits in its encoding with Argus
+using more considering Argus's name is not used often. 
 
 <h3>Checkpoint</h3>
 
