@@ -513,7 +513,7 @@ to NLP.
 Let's first take a look at our data sets. For the names I am searching for, I made a text
 file with some pretty popular characters in the series. You'll find I excluded the most popular character
 Harry. There is a good reason for this. His name was used so often (as expected) that is ended up being
-about 50% of the names in the books. Removing his name, the data set was more interesting
+about 50% of all names in the books. Removing his name, the data set was more interesting
 to examine because it became evenly distributed (or as close as it could be). 
 
 {% highlight terminal %}
@@ -587,8 +587,8 @@ There are three parts to this program. First
 is `get_frequency_dist_tracker(...)` which
 counts the names being searched in the book text, the book text being in this case
 `tokenize_harry_potter_book_philosopher_stone()`. After it counts the amount of times
-a name has appeared in text and returns its probability, it will be saved as a reference such
-as `frequencyDistTrackerForPhilosopherStone`.
+a name has appeared in text and returns its probability, it will be saved as a reference 
+variable like `frequencyDistTrackerForPhilosopherStone`.
 
 I go ahead and then calculate the entropy value for this distribution by directly 
 printing it with `str(entropy(...))`. This gives
@@ -598,11 +598,9 @@ After the entropy value is printed, I decided to do a little exploring with grap
 in python, as presenting your data in a visual manner is important.
 The method call `graph_frequency_dist(...)` and `perform_huffman_coding(...)` does
 this, as it will print a bar graph of the distribution of names and a visual binary tree
-of the huffman encoding graph.
-
-Of course, `perform_huffman_coding(...)` does more than graph the binary tree, as it
-will also perform the algorithm to build the huffman tree and print the symbol(s) 
-set of bits.
+of the huffman encoding graph. Of course, `perform_huffman_coding(...)` does more 
+than graph the binary tree, as it
+will also perform the algorithm to build the huffman tree as well.
 
 Let's go ahead and take a look at how the program goes ahead and tokenizes the book
 content with method `tokenize_harry_potter_book_philosopher_stone()`
@@ -632,10 +630,11 @@ This configures the tokenizer provided by NLTK to properly parse through content
 we call `removePunctuationTokenizer.tokenize(bookText)`. 
 
 However, we are not done! We only care about the characters of the book, not all the
-other words of the text. So in this case, we need a custom regex to focus on the characters.
+other words of the text. So in this case, we need a custom regex to focus on the characters
+names.
 That is what `get_regex_for_all_characters()` does, as it will go to the text file
-with all the names and create this regex. With that, we configure another tokenizer,
-but this time we look as the book text with removed punctuation. With that,
+with all the names and create this regex. With that, we configure another tokenizer called
+`getCharacterNamesTokenizer`. With that,
 `getCharacterNamesTokenizer.tokenize(...)` will return a tokenized set with all the
 names of the characters we want. 
 
@@ -648,9 +647,11 @@ and determining their probabilities. This can be seen in the below code snippet 
 ...
 
 class FreqDistTracker:
+    ...
     def __init__(self, names, probs):
         self.names = names
         self.probs = probs
+    ...
 
 ...
 
@@ -661,7 +662,6 @@ def get_frequency_dist_tracker(names):
     return FreqDistTracker(names, probs)
 
 ...
-
 {% endhighlight %}
 
 With all the names gained from our previous function 
@@ -672,8 +672,8 @@ of the name with `freqDistOfNames.freq(name)`.
 
 `FreqDistTracker(...)` is a custom class I made to store information on all the names and
 their probabilities in an ordered fashion. 
-I found some trouble using NLTK's FreqDist as a standalone, so I
-made a custom class with some functions of my own to get around these issues.
+I found some trouble using NLTK's `FreqDist `as a standalone, so I
+made the custom class with some functions of my own to get around these issues.
 
 At this point, I now have all the probabilities for the names. I really wanted
 to see a visual representation of this data, so I made a function called 
@@ -681,7 +681,8 @@ to see a visual representation of this data, so I made a function called
 a bar graph with the tool `matplotlib` to show how often a name is used along
 the x-axis. This was fun to explore on, as it was interesting to find cools ways to
 explain data though visuals. After all, a picture speaks a thousand words vs an
-array filled with probabilities. Let's see what the code looks like and how it prints
+array filled with probabilities. Let's see what the code and graph
+look like
 
 {% highlight py linenos %}
 ...
@@ -696,12 +697,61 @@ def graph_frequency_dist(freqDistributionTracker):
 
 ![bar_graph_name_dist.png](/assets/post3/bar_graph_name_dist.png)
 
-Seems like Ron is second popular to Harry if he was in this graph. This makes sense since
-he is a frequently used companion of the main character. The same can be said for
-Hermione as well. 
-
-Using this graph, we should expect Ron to use less bits in its encoding with Argus
+I won't go over all the details about how I used `matlabplot` here, but instead focus on
+what the data is communicating.
+Seems like Ron is second popular to Harry (if Harry was in this graph). This makes
+sense since
+he is a frequently used side character in the series. The same can be said for
+Hermione as well. Using this graph, we should expect Ron to use less bits in 
+its encoding with Argus
 using more considering Argus's name is not used often. 
+
+Now that we can clearly see how often these names appear in the book 
+_Harry Potter and the Sorcerer's Stone_ (the movie refers to the stone as the _Philosopher's_
+versus the book where it is the _Sorcerer's_ stone), we can now perform Huffman encoding in
+the function `perform_huffman_coding(...)`
+
+{% highlight py linenos %}
+...
+
+class FreqDistTracker:
+    ...
+    def convert_to_huffman_leaf_nodes(self):
+        huffmanNodeList = []
+        for i in range(len(self.probs)):
+            huffmanNodeList.append(HuffmanNode(self.names[i], self.probs[i]))
+        return huffmanNodeList
+    ...
+
+...
+
+class HuffmanNode:
+    def __init__(self, symbol, probabilitySum):
+        self.symbol = symbol
+        self.probabilitySum = probabilitySum
+        self.left = None 
+        self.right = None
+
+    def set_left(self, left):
+        self.left = left
+
+    def set_right(self, right):
+        self.right = right
+
+...
+
+def perform_huffman_coding(descendingFreqDistributionTracker):
+    huffmanLeafNodes = descendingFreqDistributionTracker.convert_to_huffman_leaf_nodes()
+    huffmanTree = build_huffman_encoding_tree(huffmanLeafNodes)
+    print_huffman_encodings(huffmanTree[0], "")
+    graph_huffman_tree(huffmanTree[0])
+
+    return
+
+...
+{% endhighlight %}
+
+There is a bit going on here as you are working with a large 
 
 <h3>Checkpoint</h3>
 
