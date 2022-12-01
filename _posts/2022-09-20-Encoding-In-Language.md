@@ -526,34 +526,7 @@ Neville
 Rubeus
 Minerva
 Severus
-Albus
-Dudley
-Petunia
-Fred
-George
-Vernon
-James
-Argus
-Lily
-Quirinus
-Seamus
-Cuthbert
-Hedwig
-Fang
-Pomona
-Filius
-Ronan
-Bane
-Mason
-Dobby
-Molly
-Lucius
-Gilderoy
-Poppy
-Ernest
-Aragog
-Myrtle
-Tom
+...
 {% endhighlight %}
 
 But now where do I get the books? It turns out there are git repos available that house the
@@ -751,7 +724,49 @@ def perform_huffman_coding(descendingFreqDistributionTracker):
 ...
 {% endhighlight %}
 
-There is a bit going on here as you are working with a large 
+With the variable `descendingFreqDistributionTracker`, I call
+the class function `convert_to_huffman_leaf_nodes(...)` to convert each individual 
+probability and name into a `HuffmanNode`. This is to create and store
+the initial leaf nodes of the binary tree that will make up our Huffman encodings.
+
+With the initial leaf nodes stored in `huffmanLeafNodes`, I begin building the
+Huffman tree. This is done in the function `build_huffman_encoding_tree(...)` til 
+I end up 
+with the root/parent of the tree which is stored in the list variable
+`huffmanTree`.
+
+The functions `print_huffman_encodings(...)` and `graph_huffman_tree(...)` will end
+up printing our encodings in console
+and provide a visual graph for our binary tree with tools `matplotlib` and
+`networkx`. Before we see what the console and visual graph look like, lets see how
+we end up building the Huffman tree in `build_huffman_encoding_tree(...)`
+
+{% highlight py linenos %}
+...
+
+def build_huffman_encoding_tree(huffmanLeafNodes):
+    huffmanTree = copy.copy(huffmanLeafNodes)
+    while len(huffmanTree) != 1:
+        leftNode = huffmanTree.pop()
+        rightNode = huffmanTree.pop()
+
+        newProbabilitySum = leftNode.probabilitySum + rightNode.probabilitySum
+        newParentNode = HuffmanNode(str(newProbabilitySum), newProbabilitySum)
+        newParentNode.left = leftNode
+        newParentNode.right = rightNode
+
+        index = huffmanTree.__len__() - 1
+        while index >= 0 and huffmanTree[index].probabilitySum < newParentNode.probabilitySum:
+            index = index - 1
+
+        huffmanTree.insert(index + 1, newParentNode)
+
+    return huffmanTree
+
+...
+{% endhighlight %}
+
+
 
 <h3>Checkpoint</h3>
 
