@@ -792,7 +792,77 @@ When we found the proper index for the `newParentNode` to be placed at,
 we then record it with the `index` variable. This `index` variable is then used
 to perform the insertion with `huffmanTree.insert(index + 1, newParentNode)`.
 
-We then continue this process until the root is found. This ends up building the Huffman Tree.
+We then continue this process until the root is found. This ends up building the 
+Huffman Tree. At that, it is time to see the encodings produced for each character
+and its visual representations.
+
+<h6>Philosophers Stone Entropy, Encodings, and Visual Graph</h6>
+
+{% highlight terminal %}
+******************************* Philosophers Stone Data *******************************
+Entropy of characters from "Philosophers Stone": 3.0973347772966444
+Binary for Symbol Petunia with probability 4.23% is: 0000
+Binary for Symbol George with probability 2.12% is: 00010
+Binary for Symbol Lily with probability 0.51% is: 0001100
+Binary for Symbol Albus with probability 0.66% is: 0001101
+Binary for Symbol Bane with probability 1.17% is: 000111
+Binary for Symbol Dudley with probability 10.21% is: 001
+Binary for Symbol Hermione with probability 19.77% is: 01
+Binary for Symbol Fred with probability 2.48% is: 10000
+Binary for Symbol Voldemort with probability 2.7% is: 10001
+Binary for Symbol Fang with probability 1.31% is: 100100
+Binary for Symbol Seamus with probability 1.46% is: 100101
+Binary for Symbol Severus with probability 0.36% is: 10011000
+Binary for Symbol Ginny with probability 0.36% is: 10011001
+Binary for Symbol James with probability 0.36% is: 10011010
+Binary for Symbol Minerva with probability 0.07% is: 1001101100
+Binary for Symbol Argus with probability 0.07% is: 10011011010
+Binary for Symbol Tom with probability 0.07% is: 10011011011
+Binary for Symbol Rubeus with probability 0.22% is: 100110111
+Binary for Symbol Draco with probability 0.8% is: 1001110
+Binary for Symbol Hedwig with probability 0.95% is: 1001111
+Binary for Symbol Vernon with probability 8.46% is: 1010
+Binary for Symbol Neville with probability 8.53% is: 1011
+Binary for Symbol Ron with probability 33.11% is: 11
+{% endhighlight %}
+
+![philosopher_stone_visual_binary_tree.png](/assets/post3/philosopher_stone_visual_binary_tree.png)
+
+<h6>Chamber of Secrets Entropy, Encodings, and Visual Graph</h6>
+
+{% highlight terminal %}
+******************************* Chamber of Secrets Data *******************************
+Entropy of characters from "Chamber of Secrets": 3.4036128885897714
+Binary for Symbol Hermione with probability 16.3% is: 00
+Binary for Symbol Vernon with probability 2.08% is: 01000
+Binary for Symbol Tom with probability 1.12% is: 010010
+Binary for Symbol Voldemort with probability 1.22% is: 010011
+Binary for Symbol George with probability 4.62% is: 0101
+Binary for Symbol Fred with probability 5.23% is: 0110
+Binary for Symbol Fang with probability 1.42% is: 011100
+Binary for Symbol Rubeus with probability 0.15% is: 011101000
+Binary for Symbol Minerva with probability 0.2% is: 011101001
+Binary for Symbol Albus with probability 0.36% is: 01110101
+Binary for Symbol Mason with probability 0.76% is: 0111011
+Binary for Symbol Lucius with probability 1.47% is: 011110
+Binary for Symbol Petunia with probability 1.47% is: 011111
+Binary for Symbol Ginny with probability 5.94% is: 1000
+Binary for Symbol Neville with probability 1.52% is: 100100
+Binary for Symbol Draco with probability 1.73% is: 100101
+Binary for Symbol Myrtle with probability 3.4% is: 10011
+Binary for Symbol Dudley with probability 1.78% is: 101000
+Binary for Symbol Gilderoy with probability 1.83% is: 101001
+Binary for Symbol Seamus with probability 0.91% is: 1010100
+Binary for Symbol Aragog with probability 0.96% is: 1010101
+Binary for Symbol Argus with probability 0.41% is: 10101100
+Binary for Symbol Severus with probability 0.3% is: 101011010
+Binary for Symbol Molly with probability 0.3% is: 101011011
+Binary for Symbol Hedwig with probability 1.02% is: 1010111
+Binary for Symbol Dobby with probability 7.67% is: 1011
+Binary for Symbol Ron with probability 35.8% is: 11
+{% endhighlight %}
+
+![chamber_of_secrets_visual_binary_tree.png](/assets/post3/chamber_of_secrets_visual_binary_tree.png)
 
 <h3>Checkpoint</h3>
 
