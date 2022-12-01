@@ -770,7 +770,9 @@ def build_huffman_encoding_tree(huffmanLeafNodes):
 
 <h3>Checkpoint</h3>
 
-<h3>References</h3>
+<h3>References And Resources</h3>
+
+[Python Code GitHub Link](https://github.com/LlamasOnTheRun/HarryPotterEntropyOfCharacters)
 
 <cite>Foundations of Statistical Natural Language Processing, 1st Edition</cite>
 
@@ -797,4 +799,4 @@ here is wrong due to more bits being produced for a higher probability!)](https:
 
 <cite>Claude Shannon, A mathematical theory of communication, Bell System Technical Journal, Vol. 27, 1948</cite>
 
-More coding references are provided in README.md in git repo [Here]()
+More references are provided [Here](https://github.com/LlamasOnTheRun/HarryPotterEntropyOfCharacters/blob/main/resources.txt)
