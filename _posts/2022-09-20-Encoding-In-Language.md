@@ -744,8 +744,7 @@ we end up building the Huffman tree in `build_huffman_encoding_tree(...)`
 {% highlight py linenos %}
 ...
 
-def build_huffman_encoding_tree(huffmanLeafNodes):
-    huffmanTree = copy.copy(huffmanLeafNodes)
+def build_huffman_encoding_tree(huffmanTree):
     while len(huffmanTree) != 1:
         leftNode = huffmanTree.pop()
         rightNode = huffmanTree.pop()
@@ -766,7 +765,34 @@ def build_huffman_encoding_tree(huffmanLeafNodes):
 ...
 {% endhighlight %}
 
+The end goal for building a huffman tree is that we end up with a root `HuffmanNode` 
+in the variable `huffmanTree`. This is what `len(huffmanTree) != 1` checks as we loop through
+the list, creating and assigning references between `HuffmanNode`'s.
 
+But wait, why would we pop the last two elements in the list with `huffmanTree.pop()`
+assigning our `leftNode` and `rightNode`? In the visual graph showing a huffman encoding
+step by step, we see the lowest probable elements are not always found at the end. 
+Well, this is intentional, as `huffmanTree` starts off in descending order in this code.
+This means the lowest probable elements will always be found at the end of the list,
+hence I pop the last two elements.
+
+We then calculate the `newProbabilitySum` and store it in a `newParentNode` with references
+back to the `leftNode` and `rightNode`. This creates a new parent that can be referenced as
+a larger probability.
+
+But for this `newParentNode` to be used, we need to insert it into `huffmanTree`. 
+And not just insert it anywhere, but where the `newProbabilitySum` will 
+not break the descending order present in `huffmanTree`. This is what the `while` loop
+accomplishes on line 14, as it checks two things:
+
+- If we reached the end of the list with `index >= 0`
+- When we found a higher probability than `newProbabilitySum`
+
+When we found the proper index for the `newParentNode` to be placed at, 
+we then record it with the `index` variable. This `index` variable is then used
+to perform the insertion with `huffmanTree.insert(index + 1, newParentNode)`.
+
+We then continue this process until the root is found. This ends up building the Huffman Tree.
 
 <h3>Checkpoint</h3>
 
