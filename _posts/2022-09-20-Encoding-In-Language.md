@@ -565,7 +565,7 @@ variable like `frequencyDistTrackerForPhilosopherStone`.
 
 I go ahead and then calculate the entropy value for this distribution by directly 
 printing it with `str(entropy(...))`. This gives
-a good indicator of how many bits on average is used for a given symbol set.
+a good indicator of how many bits on average is used for a given set of symbols.
 
 After the entropy value is printed, I decided to do a little exploring with graphing
 in python, as presenting your data in a visual manner is important.
@@ -864,7 +864,47 @@ Binary for Symbol Ron with probability 35.8% is: 11
 
 ![chamber_of_secrets_visual_binary_tree.png](/assets/post3/chamber_of_secrets_visual_binary_tree.png)
 
+<cite>Do excuse on how messy the binary tree graphs look as I had trouble styling these</cite>
+
+So what can we take away from these graphs and encodings. The first observation you could
+take away is there is more information stored in the book <cite>Chamber of Secrets</cite>
+with an entropy value of `3.4036` bits versus <cite>Philosophers Stone</cite> that has an
+entropy value of `3.0973`. This may be due to more characters being present in the second 
+book or more names being mentioned overall.
+
+Another cool observation is to see the small bit encodings coming with high percentages.
+For example, take Ron who has the percentages `35.8%` and `33.11%`. Both encodings came out to
+be `11` due to him being a frequently used character name (he had the highest percentage of all).
+Now take Minerva who has the percentages `0.07%` and `0.2%`. Considering this character is
+not as relevant as other characters, the encodings turned out to be longer and different with
+`011101001` and `1001101100` being produced. The takeaway is: The more the use, the smaller the encoding!
+
+It is also nice to see the visual graphs are showing the data in a way that is easily
+understood through observation. You can tell higher probabilities will be closer to
+the root while lower probabilities end up further away.
+
+With the graphs, entropy value, and bits printed, this completely demonstrates the power of
+Huffman encodings. Through probability, you can turn complex symbols into its simplest form of 1's
+and 0's, effectively communicating the same information! Including the entropy value, 
+this can give a clear indicator of the amount of surprise expected when encoding a set of symbols.
+
 <h3>Checkpoint</h3>
+
+In this post, I demonstrated how simple counting can lead to complex methods of information
+extraction. A small portion was also dedicated to Claude Shannon as his contributions
+made a new field of innovation that has much relevance today.
+The methods discussed included calculating the total amount of surprise that can 
+be expected (Entropy)
+and converting symbols into 0's and 1's (Shannon Fano and Huffman). With these tools 
+available, you gain more with less as storing and sharing information becomes easier
+while also gaining an expectation of its final result. I also walked through a coding example
+of Huffman encoding with its entropy value displayed for two books of Harry Potter.
+I think learning about these encoding methods was interesting and taught me a lot about
+how information theory works overall. I hope to explore more on the different ways 
+you can use entropy to gain more information on what you are examining in future as well.
+The coding for this portion was also frustrating as much as it was rewarding as small
+logical errors always found a way past me. Through each correction however, I learned a new
+lesson, and that is the greatest reward.
 
 <h3>References And Resources</h3>
 
