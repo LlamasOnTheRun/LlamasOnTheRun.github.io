@@ -7,6 +7,10 @@ layout: default
 
 {{ content }}
 
+{% if page.comments_id %}
+    {% include comments.html issue_id=page.comments_id %}
+{% endif %}
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: {

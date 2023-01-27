@@ -2,3 +2,5 @@ theme: jekyll-theme-slate
 
 markdown: kramdown
 highlighter: rouge
+
+issues_repo: LlamasOnTheRun/LlamasOnTheRun.github.io
