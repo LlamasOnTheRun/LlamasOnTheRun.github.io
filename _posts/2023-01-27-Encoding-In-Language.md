@@ -22,11 +22,12 @@ one could measure the
 relationship of words, sentences, paragraphs, and more to 
 measure predictability in a word set to see the connection that form between them.
 
-But how is probability used in language? 
+But how is probability used in language? Let's break this down piece by piece.
 By definition, the act of probability is "the extent to which something is probable; 
 the likelihood of something happening or being the case." But how does one end up
 measuring something that could likely happen. It all starts to man's basic ability, 
-counting. The most basic device to see how probability is measured is with a coin. 
+counting. Counting is a simple procedure, and can give us loads of information. 
+Let's take the example of a coin flip.
 Given a coin has heads and tails, you could keep flipping it to find a relatively 
 even distribution of heads and tails. You could then make the argument that you have a "fair" coin.
 
@@ -37,12 +38,14 @@ of simply flipping a coin. There are more variables to consider, such as how oft
 used with another, a word used in a particular section of time or place,
 a collocation or phrase is uttered at a given event, etc. The list could go on and on
 if you put your mind to it, and you'll find the use case that is aimed to be measured
-can yield interesting findings when examining language.
+can yield interesting findings.
 
-To draw these associations between one event with another, you need to count distributions
-of data and track when one event overlaps with another. For example, lets say I started to
+To draw associations between one event with another, you need to count distributions
+of data and track when one event overlaps with another. Let's create a fun example 
+for the sake of
+entertainment and learning. Let's say I started to
 track how often band members are mentioned in two entertainment articles. Let's say the band
-is Red Hot Chili Peppers to throw some fun into the problem. 
+is Red Hot Chili Peppers to throw some more fun into the problem (guilty, I am a fan). 
 
 ![red_hot_chili_peppers.png](/assets/post3/red_hot_chili_peppers.png)
 
@@ -50,24 +53,24 @@ In the articles, I find:
 
 **Article#1** mentioned band member:
 
-- Anthony Kiedis 7 times
-- Chad Smith 0 times
-- John Frusciante 2 times
-- Flea (Michael Balzary) 5 times
+- Anthony Kiedis: 7 times
+- Chad Smith: 0 times
+- John Frusciante: 2 times
+- Flea: 5 times
 
 **Article#2** mentioned band member:
 
-- Anthony Kiedis 4 times
-- Chad Smith 1 times
-- John Frusciante 0 times
-- Flea (Michael Balzary) 7 times
+- Anthony Kiedis: 4 times
+- Chad Smith: 1 times
+- John Frusciante: 0 times
+- Flea: 7 times
 
 By simply counting the names of these band members in both articles, I could then map out
 a probability space and find associations between the band members. 
 In this case, I want to find the probability of finding Anthony Kiedis in both articles
 if I were to try and find a random band member's name. 
 
-The probability of me finding Anthony in **Article#1** comes up as $$ \frac{1}{2} $$ while for
+The probability of me finding Anthony in **Article#1** comes up as $$ \frac{1}{2} $$, while for
 **Article#2**, I find Anthony $$ \frac{1}{3} $$ of the time. To find the probability of finding Anthony
 in both articles out of all names requires us to find the _joint distribution_. This is defined as:
 
@@ -95,10 +98,8 @@ $$ p_{Y}(y) = \sum_{x} p(x,y) $$
 
 Think of this as totalling up the probabilities of the event y happening with each event x.
 After all, to truly know the relationship of these two values, we have to know how y 
-behaves for every instance of x, to truly understand how much of a dependence it has on x.
+behaves for every instance of x, to truly understand how much of a dependence it has on y.
 You could also apply the opposite logic to x with $$ p_{X}(x) $$.
-
-<!--TODO Add equation for marginal distribution here-->
 
 Now, back to our example. One thing to note about conditional distributions, they
 work best when a set of events **are neither independent nor mutually exclusive**. I couldn't
@@ -140,8 +141,8 @@ data from articles to sentences. Such that:
 
 Now we're talking. By grouping the data to lower groupings, we can now start to see
 relationships form in the text. We could even go further with these groupings by splitting
-words into groups versus sentences and counting the times we see these two events. But for the sake of
-a simple (as it can be) example, lets see what the conditional distributions are:
+words into small groups versus sentences and counting the times we see these two events. But for the sake of
+a simple (as it can be) example, let's see what the conditional distributions are:
 
 $$ = p(\text{Anthony is in the sentence}\mid \text{Flea is in the sentence}) 
 \\
@@ -170,12 +171,12 @@ information theory comes into play.
 <h3>Information Theory in Language</h3>
 
 Information Theory is the ability to communicate information from one source to another
-with minimal interruption and loss of information given noise (the interference between 
+with minimal interruption and loss of information given that noise (the interference between 
 the source and destination) 
 is present in your process. We can thank the work of Claude Shannon for this field, as
 his original paper <cite>A Mathematical Theory of Communication</cite> gave rise to many 
 methods of estimation and NLP models that persist to this day. I couldn't help but take time
-to read a good portion of this paper, as I wanted to see the root of the foundations that
+to read a good portion of this paper, as I wanted to see the foundations that
 created an entirely new field during his time.
 
 ![claude_the_juggler.png](/assets/post3/claude_the_juggler.png)
@@ -185,7 +186,7 @@ created an entirely new field during his time.
 Claude Shannon is an individual that couldn't possibly be ignored. He was a student of
 MIT contributing to many fields such as Boolean algebra and Cryptography. His playful nature
 could be shown too, as he would make many fun contraptions at Bell Labs like juggling 
-machines and robotic turtles. But this playful nature did not sidetrack him from
+machines and robotic turtles. But this playful nature did not sidetrack him from the
 main problems he was aiming to solve. His 
 collages referred to him as someone who takes on the hard problems because they were hard
 by nature. I think we can all learn a thing from Shannon in the perseverance of seeking knowledge
@@ -251,11 +252,11 @@ Considering each event has an equal probability of occurring in great numbers,
 the amount of information expected increases as well! 
 
 Now, how can this be applied to
-language? When applied to language, you can determine the amount of information
+language? When applied, you can determine the amount of information
 for a single word or collocation. This also means you can reduce the amount of information
 needed to communicate the proper intention. 
 
-For example, lets say I was a explorer and
+For example, lets say I was an explorer of sorts and
 wanted to let people know what city I am in. There are a tons of cities in the world, 
 each with a vibrant name. I could be in Chicago, New York, or Krungthepmahanakhon Amonrattanakosin 
 Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan 
@@ -266,10 +267,13 @@ Amonphimanawatansathit Sakkathattiyawitsanukamprasit (Yes, this is a real city n
 <cite>Also referred to as the city of Bangkok!</cite>
 
 But when
-I factor in the probability of me being in a city and apply bits in my communication, 
+I factor in the probability of the explorer being in a city and 
+apply bits in my communication, 
 then I can reduce this information
-dramatically. Krungthepmahanakhon Amonrattanakosin... (you get the point) now becomes a collection of 0's and
-1's to effectively communicate where I am. This could do wonders in saving performance in
+dramatically. Krungthepmahanakhon Amonrattanakosin... (you get the point) now 
+becomes a collection of 0's and
+1's to effectively communicate where I am. This could do wonders in saving 
+performance in
 systems that handle large amounts of text that have recurring themes. It can also define
 the amount of information associated with a city for the given use case, defining the
 amount of surprise when a city is listed.
@@ -281,7 +285,7 @@ to 0's and 1's. This is where encoding comes into play.
 <h3>Encoding and Decoding Information to Bits</h3>
 
 While reading <cite>Foundations of Statistical Natural Language Processing, 
-1st Edition</cite>, my eyes were caught by very bottom highlighted section below:
+1st Edition</cite>, my eyes were caught by the bottom highlighted section below:
 
 ![nlp_page_62.png](/assets/post3/nlp_page_62.png)
 
@@ -307,7 +311,7 @@ exist so many! Here are a few examples:
 
 We haven't even listed them all which is the beauty of these algorithms. Each serve a
 distinct purpose and use case all because there is not a one-size fits all solution. 
- Instead,
+Instead,
 it is a wealth of tools available for use, and knowing which one to use
 is half the battle.
 
@@ -329,14 +333,19 @@ an example:
 
 <center style="font-weight: 900;">p  t  k  a  u  p  a  a  a  i</center>
 
-Notice how I am able to decipher this set of bits with minimal interruption (other than
+Notice how I am able to decipher this set of bits with minimal 
+interruption (other than
 me manually eyeing the key and the code to ensure they are correct
 for this example). I am able to parse
 through these bits and find a set of symbols simply by looking left to right
-with the bit stack and splitting when a set is found in the key. That is the benefit of
-these algorithms, the ability to encode the keys without hindering the ability to decode
-them. Note however these encodings do not work with the presence of noise in your system, 
-such that by inserting an extra bit will still generate a valid code:
+with the bit stack and splitting when a set is found in the key. That is the 
+benefit of
+these algorithms, the ability to encode the keys without hindering the ability to 
+decode
+them. Note however these encodings do not work with the presence of noise in your 
+system, 
+such that by inserting an extra bit will still generate a valid code, but give a
+completely new set:
 
 <center style="font-weight: 900;">100001010111<div style="font-weight: 900; color: red;display: inline-block;">1</div>1100010101110</center>
 
@@ -345,16 +354,16 @@ such that by inserting an extra bit will still generate a valid code:
 <center style="font-weight: 900;">p  t  k  a  u  a  t  k  a  i</center>
 
 Now that we know how to decode a set of bits, your probably wondering how we go
-about encoding it. Both Shannon and Huffman encoding algorithms relies on 
-probability. In particular, the individual probability of symbols in a set. With
+about encoding it. Both Shannon and Huffman coding algorithms relies on 
+probability. In particular, the individual probability of a set of symbols. With
 the probability of each symbol, we can then build a binary tree that maps out our
 bits. But how we go about building that tree is what separates these two algorithms.
 Let's start with Shannon Fano encoding and use the example in the passage. The 
 pseudocode is defined:
 
 1. Organize the probabilities with its associated symbol in sorted descending order
-2. Split the symbols down the middle where each sets total probability is close to
-one another
+2. Split the symbols down the middle where each sets total probability sum has a
+small difference (Such that 50-50 is preferable over 25-75)
 3. Reference back to the total probability 
 value of the original list (Should end up to be 100% for the first time around)
 4. Perform Step 2-4 again for each set until you end up with leaf nodes that 
@@ -394,7 +403,8 @@ yields the following encoding:
 
 ![shannon_fano_encoding_7.png](/assets/post3/shannon_fano_encoding_7.png)
 
-See how traveling down to each node leads to a new encoding. Starting at the root, I am
+See how traveling down to each node leads to a new encoding. Starting at the root, 
+I am
 able to define a unique encoding that can be used to communicate a message. All the
 encodings end up being exactly how we found in the passage:
 
@@ -412,21 +422,23 @@ i = 110
 u = 111
 $$
 
-Now I can effectively communicate a message with minimal loss of information. But maybe
-I don't want to use fixed length encoding, but instead, I wish the length to vary in size.
-Better yet, maybe I want to have a coded solution on hand. 
+Now I can effectively communicate a message with minimal loss of information. 
+But maybe
+I don't want to use fixed length encoding, but instead, I wish the length to 
+vary in size.
+Better yet, I want to have a coded solution on hand. 
 This is where Huffman Encoding comes into play.
 
 <h3>Entropy and Huffman Encoding Code Challenge</h3>
 
-For this posts coding challenge, I decided to code a solution for Huffman Encoding
+For this posts coding challenge, I decided to code a solution for Huffman coding
 and calculate the entropy value based on the words being analyzed. 
 This will involve parsing through a text document,
 counting words that are to be measured, encoding the given words with Huffman, and
 then calculating the entropy value for the given set.
 
-Before we do that, lets discuss on how Huffman encoding works. Unlike Shannon-Fano
-encoding, Huffman encoding used variable length encodings. This means the length 
+Before we do that, lets discuss on how Huffman coding works. Unlike Shannon-Fano
+encoding, Huffman coding uses variable length encodings. This means the length 
 of the encodings
 can vary in bit size. Such that a high probability symbol may produce "1", but the
 lowest probability symbol could expand out to 100101001... Of course, this depends
@@ -440,7 +452,8 @@ The pseudocode for Huffman Encoding is as follows:
 4. Perform Steps 1-3 until you end up with one probability value as the root
 5. Assign 0 to the left reference and 1 to the right reference
 
-Let's go through an example. Let's say I was analyzing a book to determine what location
+Let's go through an example. Let's say I was analyzing a book to determine what 
+location
 is often used in the text. Let's say this book is The Hobbit by J.R.R. Tolkien.
 After performing a count, there are 7 distinct locations used:
 
@@ -453,15 +466,17 @@ After performing a count, there are 7 distinct locations used:
 - <p><div style="font-weight: 900;display: inline-block;">Desolation of the Dragon(DD)</div>: 4%</p>
 
 <cite>(Note: This is very much dummy data and not measured. Although, I am curious to find
-a way to measure where someone is in text based on context clues. Something to look into
+a way to measure where someone is in the text based on context clues. Something to look into
 in the future)</cite>
 
 Now, lets put this pseudocode code in action. First, we need our probability list:
 
 ![hoffman_encoding_1.png](/assets/post3/hoffman_encoding_1.png)
 
-Notice how it is completely unordered. Unlike Shannon Fano encoding, the huffman encoding
-can still function regardless of the order. Now, lets take the two lowest probabilities
+Notice how it is completely unordered. Unlike Shannon Fano coding, the Huffman 
+coding
+can still function regardless of the order. Now, lets take the two 
+lowest probabilities
 and make a reference to its total:
 
 ![hoffman_encoding_2.png](/assets/post3/hoffman_encoding_2.png)
@@ -493,29 +508,38 @@ right references:
 ![hoffman_encoding_12.png](/assets/post3/hoffman_encoding_12.png)
 
 Now that we know how huffman encoding works, let's jump back into the coding project.
-Deciding on what to use as a dataset to create these encodings was certainly a challenge.
+Deciding on what to use as a dataset to create these encodings was certainly a 
+challenge.
 I knew I wanted to use something fun, so I eventually landed on the idea to look at
 a popular book. The book series I eventually went with was Harry Potter
 
 ![img.png](/assets/post3/harry_potter_book.png)
 
 But what to encode? I needed a common subject to look at that could be effectively
-counted without too much complexity. Locations, moods, and colors came to mind, but I
-eventually decided to go with names (similar to what I did for the red-hot chili peppers
-example). This proved to be interesting as I had to do research into some popular characters
+counted without too much complexity. Locations, moods, and colors came to mind, 
+but I
+eventually decided to go with names (similar to what I did for the Red Hot 
+Chili Peppers
+example). This proved to be interesting as I had to do research into 
+some popular characters
 for the series and come up with a list of names to search for.
 
-After about four working days looking at this problem, I eventually came to a solution.
+After about four working days looking at this problem, I eventually came to a 
+solution.
 I like to think my python coding and test case implementation has improved after
-this challenge. But it will only get better after I complete more challenges that relate
-to NLP.
+this challenge. But it will only get better after I complete more challenges that
+relate to NLP.
 
 <h3>Coding Solution</h3>
 
-Let's first take a look at our data sets. For the names I am searching for, I made a text
-file with some pretty popular characters in the series. You'll find I excluded the most popular character
-Harry. There is a good reason for this. His name was used so often (as expected) that is ended up being
-about 50% of all names in the books. Removing his name, the data set was more interesting
+For the names I am searching for, 
+I made a text
+file with some pretty popular characters in the series. You'll find I excluded 
+the most popular character
+Harry. There is a good reason for this. His name was used so often (as expected) 
+that is ended up being
+about 50% of all names in the books. Removing his name, the data set was more 
+interesting
 to examine because it became evenly distributed (or as close as it could be). 
 
 {% highlight terminal %}
@@ -531,9 +555,12 @@ Severus
 ...
 {% endhighlight %}
 
-But now where do I get the books? It turns out there are git repos available that house the
-text versions of the books free for use. Not only did I use one of these books, but I
-decided to use two. This allowed me to test my code with another word set to examine and account
+But now where do I get the books? It turns out there are git repos available that 
+house the
+text versions of the books free for use. Not only did I use one of these books, 
+but I
+decided to use two. This allowed me to test my code with another word set to examine
+and account
 for edge cases, such as a character existing in one book, but not the other.
 
 Let's take a look at `main()` to see how the execution of this project is structured
@@ -562,8 +589,8 @@ There are three parts to this program. First
 is `get_frequency_dist_tracker(...)` which
 counts the names being searched in the book text, the book text being in this case
 `tokenize_harry_potter_book_philosopher_stone()`. After it counts the amount of times
-a name has appeared in text and returns its probability, it will be saved as a reference 
-variable like `frequencyDistTrackerForPhilosopherStone`.
+a name has appeared in the text and returns its probability, 
+it will be saved in a variable like `frequencyDistTrackerForPhilosopherStone`.
 
 I go ahead and then calculate the entropy value for this distribution by directly 
 printing it with `str(entropy(...))`. This gives
@@ -597,21 +624,38 @@ def tokenize_harry_potter_book_philosopher_stone():
 ...
 {% endhighlight %}
 
-Here I reference the content of the book with an url to a raw text link and make a http
-request to get it with `requests.get(url).text`. With the entire content of
-book text, I perform some filtering by removing punctuation characters with a regex
-so we can only worry about the words of the text with `nltk.tokenize.RegexpTokenizer(r'\w+')`.
-This configures the tokenizer provided by NLTK to properly parse through content when
-we call `removePunctuationTokenizer.tokenize(bookText)`. 
+Here I reference the content of the book with an url to a raw text link 
+and make a http
+request to get it with `requests.get(url).text`. With the entire
+books text, I perform some filtering by removing punctuation characters with a regex
+so we can only worry about the words of the 
+text with `nltk.tokenize.RegexpTokenizer(r'\w+')`.
+This configures the tokenizer provided by NLTK to properly parse 
+through content when
+we call `removePunctuationTokenizer.tokenize(bookText)`.
 
 However, we are not done! We only care about the characters of the book, not all the
-other words of the text. So in this case, we need a custom regex to focus on the characters
-names.
+other words of the text. So in this case, we need a custom regex to focus on the 
+characters names.
 That is what `get_regex_for_all_characters()` does, as it will go to the text file
-with all the names and create this regex. With that, we configure another tokenizer called
-`getCharacterNamesTokenizer`. With that,
-`getCharacterNamesTokenizer.tokenize(...)` will return a tokenized set with all the
-names of the characters we want. 
+searching for all the names with the given regex. With that, we configure another 
+tokenizer called
+`getCharacterNamesTokenizer`. With that, `getCharacterNamesTokenizer.tokenize(...)` 
+will return a tokenized set with all the
+names of the characters we want. Below is what the tokenized
+set comes out as
+
+{% highlight terminal %}
+['Dudley', 'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Petunia',
+'Dudley', 'Petunia', 'Petunia', 'Albus', 'Albus', 'Voldemort', 'Voldemort',
+'Voldemort', 'Voldemort', 'Voldemort', 'Lily', 'James', 'Lily', 'James', 'Albus',
+'Voldemort', 'Lily', 'James', 'Dudley', 'Dudley', 'Petunia', 'Dudley', 'Dudley',
+'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Petunia',
+'Vernon', 'Vernon', 'Dudley', 'Dudley', 'Vernon', 'Petunia', 'Dudley', 'Dudley',
+'Dudley', 'Dudley', 'Dudley', 'Dudley', 'Petunia', 'Dudley', 'Petunia', 'Dudley',
+'Vernon', 'Dudley', 'Dudley', 'Petunia', 'Vernon', 'Dudley',
+...
+{% endhighlight %}
 
 So now that I have the characters of the book being nicely packed and returned using 
 `tokenize_harry_potter_book_philosopher_stone()`, it's time to start counting them
@@ -649,13 +693,30 @@ of the name with `freqDistOfNames.freq(name)`.
 their probabilities in an ordered fashion. 
 I found some trouble using NLTK's `FreqDist `as a standalone, so I
 made the custom class with some functions of my own to get around these issues.
+Let's see what the names and probabilities look like from this class when printed
+
+{% highlight terminal %}
+...
+['Ron', 'Hermione', 'Dudley', 'Neville', 'Vernon', 'Petunia', 'Voldemort', 'Fred', 
+'George', 'Seamus', 'Fang', 'Bane', 'Hedwig', 'Draco', 'Albus', 'Lily', 'James', 
+'Ginny', 'Severus', 'Rubeus', 'Minerva', 'Tom', 'Argus']
+[0.3311451495258935, 0.1976659372720642, 0.10211524434719182, 0.08533916849015317, 
+0.08460977388767323, 0.04230488694383661, 0.02698760029175784, 
+0.024799416484318017, 0.021152443471918306, 0.014587892049598834, 
+0.01312910284463895, 0.011670313639679067, 0.009482129832239242, 
+0.008023340627279359, 0.006564551422319475, 0.005105762217359592, 
+0.0036469730123997084, 0.0036469730123997084, 0.0036469730123997084, 
+0.002188183807439825, 0.0007293946024799417, 0.0007293946024799417, 
+0.0007293946024799417]
+...
+{% endhighlight %}
 
 At this point, I now have all the probabilities for the names. I really wanted
 to see a visual representation of this data, so I made a function called 
 `graph_frequency_dist(...)` to accomplish this. This function will go ahead and make
 a bar graph with the tool `matplotlib` to show how often a name is used along
 the x-axis. This was fun to explore on, as it was interesting to find cools ways to
-explain data though visuals. After all, a picture speaks a thousand words vs an
+explain data though visuals. After all, a picture speaks a thousand words versus an
 array filled with probabilities. Let's see what the code and graph
 look like
 
@@ -772,14 +833,18 @@ in the variable `huffmanTree`. This is what `len(huffmanTree) != 1` checks as we
 the list, creating and assigning references between `HuffmanNode`'s.
 
 But wait, why would we pop the last two elements in the list with `huffmanTree.pop()`
-assigning our `leftNode` and `rightNode`? In the visual graph showing a huffman encoding
+when assigning our `leftNode` and `rightNode`? 
+In the visual graph showing a huffman encoding
 step by step, we see the lowest probable elements are not always found at the end. 
-Well, this is intentional, as `huffmanTree` starts off in descending order in this code.
+This is different in the code, as `huffmanTree` 
+starts off in descending order.
 This means the lowest probable elements will always be found at the end of the list,
 hence I pop the last two elements.
 
-We then calculate the `newProbabilitySum` and store it in a `newParentNode` with references
-back to the `leftNode` and `rightNode`. This creates a new parent that can be referenced as
+We then calculate the `newProbabilitySum` and 
+store it in a `newParentNode` with references
+back to the `leftNode` and `rightNode`. 
+This creates a new parent that can be referenced as
 a larger probability.
 
 But for this `newParentNode` to be used, we need to insert it into `huffmanTree`. 
@@ -871,12 +936,12 @@ Binary for Symbol Ron with probability 35.8% is: 11
 So what can we take away from these graphs and encodings. The first observation you could
 take away is there is more information stored in the book <cite>Chamber of Secrets</cite>
 with an entropy value of `3.4036` bits versus <cite>Philosophers Stone</cite> that has an
-entropy value of `3.0973`. This may be due to more characters being present in the second 
-book or more names being mentioned overall.
+entropy value of `3.0973`. This may be due to more characters being present 
+in the <cite>Philosophers Stone</cite>.
 
 Another cool observation is to see the small bit encodings coming with high percentages.
 For example, take Ron who has the percentages `35.8%` and `33.11%`. Both encodings came out to
-be `11` due to him being a frequently used character name (he had the highest percentage of all).
+be `11` due to it being a frequently used character name (he had the highest percentage of all).
 Now take Minerva who has the percentages `0.07%` and `0.2%`. Considering this character is
 not as relevant as other characters, the encodings turned out to be longer and different with
 `011101001` and `1001101100` being produced. The takeaway is: The more the use, the smaller the encoding!
