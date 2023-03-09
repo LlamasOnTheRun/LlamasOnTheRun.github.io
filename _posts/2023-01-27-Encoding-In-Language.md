@@ -15,8 +15,9 @@ a solution.”
 
 <h3>Probability In NLP</h3>
 
-While you could argue that language is too unpredictable for a machine to
-produce words or phrases like us, through probability, 
+Language is unpredictable and can change so often that is seems impossible
+for a machine to
+produce words or phrases like us. But through probability, 
 one could measure the
 relationship of words, sentences, paragraphs, and more to 
 measure predictability in a word set to see the connection that form between them.
