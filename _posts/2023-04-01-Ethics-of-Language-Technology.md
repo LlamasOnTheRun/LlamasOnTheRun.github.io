@@ -18,7 +18,7 @@ Notes:
 - Look into Microsoft’s Tay chatbot as a case study of bad NLP
 - Geffory Hinton's leave from Google due to AI Concerns
 - Chomskys Open letter about what AI lacks
-
+- Open Letter Pause for Chat Developments signed by people including Elon Musk
 
 <h3>References And Resources</h3>
 
