@@ -16,6 +16,8 @@ Notes:
 
 - Look into Oppenheimer reasoning for making the atomic bomb
 - Look into Microsoft’s Tay chatbot as a case study of bad NLP
+- Geffory Hinton's leave from Google due to AI Concerns
+- Chomskys Open letter about what AI lacks
 
 
 <h3>References And Resources</h3>
