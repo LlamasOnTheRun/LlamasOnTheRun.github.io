@@ -60,9 +60,9 @@ sentence generation and how it can end up making cryptic sentences. We will dig 
 
 ![NLP Contributors](/assets/post2/CFG_with_NLP_example.png)
 
-<h3>Are These Two Mindsets Widely and Only Accepted Today</h3>
+<h3>What is Widely Accepted Nowadays?</h3>
 
-Here is the point where I believe we dive into opinion, as no clear answer could be produced after looking into this delicate 
+I believe this is a matter of opinion, as no clear answer could be produced after looking into this delicate 
 question. The Empirest approach declares the answer is in the data while the Rationalist approach says the answer is universally 
 defined in nature. But my belief is there are not only two practical approaches, and one should explore the possibility of combining 
 these approaches to produce more fantastic methods and results for future NLP problems.
